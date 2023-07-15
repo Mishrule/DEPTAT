@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  
+   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+  </ItemGroup>  
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>  
+  <ItemGroup>
+    <ProjectReference Include="..\DEPTAT.Application\DEPTAT.Application.csproj" />
+    <ProjectReference Include="..\DEPTAT.Domain\DEPTAT.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -5,14 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DEPTAT.Application.DTOs.AcademicYear;
 
 namespace DEPTAT.Application.Features.Settings.Commands.AcademicYearCommands
 {
     public class CreateAcademicYearCommand : IRequest<BaseResponse<AcademicYearResponse>>
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public CreateAcademicYearDto CreateAcademicYearDto { get; }
     }
 }

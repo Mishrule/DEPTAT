@@ -8,11 +8,11 @@ using FluentValidation;
 
 namespace DEPTAT.Application.DTOs.Faculty.Validations
 {
-    public class CreateFacultyDtoValidaor: AbstractValidator<CreateFacultyDto>
+    public class CreateFacultyDtoValidator: AbstractValidator<CreateFacultyDto>
     {
         public readonly IFacultyRepository _facultyRepository;
 
-        public CreateFacultyDtoValidaor(IFacultyRepository facultyRepository)
+        public CreateFacultyDtoValidator(IFacultyRepository facultyRepository)
         {
             _facultyRepository = facultyRepository;
             RuleFor(p => p.Name)

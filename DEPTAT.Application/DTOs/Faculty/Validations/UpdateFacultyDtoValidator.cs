@@ -9,11 +9,11 @@ using FluentValidation;
 
 namespace DEPTAT.Application.DTOs.Faculty.Validations
 {
-    public class UpdateFacultDtoValidator: AbstractValidator<UpdateFacultyDto>
+    public class UpdateFacultyDtoValidator: AbstractValidator<UpdateFacultyDto>
     {
         public readonly IFacultyRepository _facultyRepository;
 
-        public UpdateFacultDtoValidator(IFacultyRepository facultyRepository)
+        public UpdateFacultyDtoValidator(IFacultyRepository facultyRepository)
         {
             _facultyRepository = facultyRepository;
             Include(new IFacultyDtoValidator(_facultyRepository));

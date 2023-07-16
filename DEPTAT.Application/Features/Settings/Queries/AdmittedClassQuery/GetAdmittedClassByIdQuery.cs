@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DEPTAT.Application.Responses;
+﻿using DEPTAT.Application.Responses;
 using MediatR;
 
-namespace DEPTAT.Application.Features.Settings.Queries.YearGroupQueries
+namespace DEPTAT.Application.Features.Settings.Queries.AdmittedClassQuery
 {
-    public class GetAdmittedClassByIdQuery : IRequest<BaseResponse<YearGroupResponse>>
+    public class GetAdmittedClassByIdQuery : IRequest<BaseResponse<AdmittedClassResponse>>
     {
         public int Id { get; set; }
         public GetAdmittedClassByIdQuery(int id)

@@ -8,6 +8,13 @@ namespace DEPTAT.Application.Contracts.Persistence
 {
     public interface IUnitOfWork : IDisposable
     {
-        Task Save();
+        IYearGroupRepository YearGroupRepository { get; }
+        IProgrammeRepository ProgrammeRepository { get; }
+        IFacultyRepository FacultyRepository { get; }
+        IDepartmentRepository DepartmentRepository { get; }
+        ICourseRepository CourseRepository { get; }
+        IAdmittedClassRepository AdmittedClassRepository { get; }
+        IAcademicYearRepository AcademicYearRepository { get; }
+        Task<bool> Save();
     }
 }

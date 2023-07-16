@@ -6,5 +6,7 @@ namespace DEPTAT.Application.DTOs.AcademicYear
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public string? ModifiedBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
     }
 }

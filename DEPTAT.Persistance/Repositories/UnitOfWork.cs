@@ -44,11 +44,44 @@ namespace DEPTAT.Persistence.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public async Task Save()
+        public async Task<bool> Save()
         {
             var username = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
 
-            await _context.SaveChangesAsync(username);
+          var save =  await _context.SaveChangesAsync(username);
+          return save > 0;
         }
+
+        //public async Task<bool> Save(HttpContext httpContext)
+        //{
+        //    var userId = httpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //    var user = await _userManager.FindByEmailAsync(userId);
+
+        //    var entries = _context.ChangeTracker.Entries()
+        //        .Where(q => q.State == EntityState.Modified ||
+        //                    q.State == EntityState.Added);
+
+        //    foreach (var entry in entries)
+        //    {
+        //        if (entry.State == EntityState.Modified)
+        //        {
+        //            ((EntityBase)entry.Entity).ModifiedDate = DateTime.Now;
+        //            ((EntityBase)entry.Entity).ModifiedBy = user?.UserName;
+        //        }
+        //        else if (entry.State == EntityState.Added)
+        //        {
+        //            ((EntityBase)entry.Entity).CreatedDate = DateTime.Now;
+        //            ((EntityBase)entry.Entity).CreatedBy = user?.UserName;
+        //        }
+        //    }
+
+
+
+        //    var username = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
+        //    var changes = await _context.SaveChangesAsync();
+        //    return changes > 0;
+        //}
+
+
     }
 }

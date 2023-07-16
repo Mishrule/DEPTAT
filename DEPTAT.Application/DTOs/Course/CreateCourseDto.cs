@@ -12,5 +12,7 @@ namespace DEPTAT.Application.DTOs.Course
         public string Description { get; set; }
         public string Code { get; set; }
         public int ProgrammeId { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
     }
 }

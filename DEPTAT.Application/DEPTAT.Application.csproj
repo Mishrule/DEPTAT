@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Contracts\Infrastructure\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Features\Settings\Handlers\YearGroupHandlers\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

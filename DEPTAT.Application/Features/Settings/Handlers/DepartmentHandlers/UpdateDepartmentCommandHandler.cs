@@ -29,11 +29,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.DepartmentHandlers
         public async Task<BaseResponse<DepartmentResponse>> Handle(UpdateDepartmentCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<DepartmentResponse>();
-            var validator = new UpdateDepartmentDtoValidator(_DepartmentRepository);
-            var validationResult = await validator.ValidateAsync(request.UpdateDepartmentDto);
+            //var validator = new UpdateDepartmentDtoValidator(_DepartmentRepository);
+            //var validationResult = await validator.ValidateAsync(request.UpdateDepartmentDto);
 
-            if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult);
+            //if (validationResult.IsValid == false)
+            //    throw new ValidationException(validationResult);
             //response.IsSuccess = false;
             //response.Message = "Update Failed";
             //response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
@@ -48,7 +48,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.DepartmentHandlers
             if (save)
             {
                 response.IsSuccess = true;
-                response.Message = "Success: Record updated Successfully";
+                response.Message = "Record updated Successfully";
             }
             else
             {

@@ -11,6 +11,6 @@ namespace DEPTAT.Application.Features.Settings.Commands.AcademicYearCommands
 {
     public class CreateAcademicYearCommand : IRequest<BaseResponse<AcademicYearResponse>>
     {
-        public CreateAcademicYearDto CreateAcademicYearDto { get; }
+        public CreateAcademicYearDto CreateAcademicYearDto { get; set; }
     }
 }

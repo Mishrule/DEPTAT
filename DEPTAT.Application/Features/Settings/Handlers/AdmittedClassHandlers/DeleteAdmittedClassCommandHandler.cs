@@ -40,7 +40,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.AdmittedClassHandlers
                 response.Message = "Request not found";
             }
 
-            await _unitOfWork.AdmittedClassRepository.Delete(AdmittedClass);
+            await _unitOfWork.AdmittedClassRepository.Delete(AdmittedClass.Id);
             var save = await _unitOfWork.Save();
             if (save)
             {

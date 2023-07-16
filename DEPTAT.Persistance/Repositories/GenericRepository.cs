@@ -129,9 +129,9 @@ namespace DEPTAT.Persistence.Repositories
             return Task.CompletedTask;
         }
 
-        public async Task Delete(T entity)
+        public async Task Delete(int id)
         {
-            var record = await _db.FindAsync(entity);
+            var record = await _db.FindAsync(id);
             _db.Remove(record);
         }
 

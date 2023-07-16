@@ -29,11 +29,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.AcademicYearHandlers
         public async Task<BaseResponse<AcademicYearResponse>> Handle(UpdateAcademicYearCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<AcademicYearResponse>();
-            var validator = new UpdateAcademicYearDtoValidator(_AcademicYearRepository);
-            var validationResult = await validator.ValidateAsync(request.UpdateAcademicYearDto);
+            //var validator = new UpdateAcademicYearDtoValidator(_AcademicYearRepository);
+            //var validationResult = await validator.ValidateAsync(request.UpdateAcademicYearDto);
 
-            if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult);
+            //if (validationResult.IsValid == false)
+            //    throw new ValidationException(validationResult);
             //response.IsSuccess = false;
             //response.Message = "Update Failed";
             //response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();

@@ -55,7 +55,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.YearGroupHandlers
                 if (save)
                 {
                     response.IsSuccess = true;
-                    response.Message = "Success: Record save Successfully";
+                    response.Message = "Record Saved";
                 }
                 else
                 {

@@ -40,16 +40,16 @@ namespace DEPTAT.Application.Features.Settings.Handlers.DepartmentHandlers
                 response.Message = "Request not found";
             }
 
-            await _unitOfWork.DepartmentRepository.Delete(Department);
+            await _unitOfWork.DepartmentRepository.Delete(Department.Id);
             var save = await _unitOfWork.Save();
             if (save)
             {
                 response.IsSuccess = true;
-                response.Message = "Success: Date Recorded Successfully";
-            }
+                response.Message = "Recorded Deleted";
+			}
             else
             {
-                response.Message = "Error: Save Failed Try again";
+                response.Message = "Delete Failed Try again";
                 response.IsSuccess = false;
             }
 

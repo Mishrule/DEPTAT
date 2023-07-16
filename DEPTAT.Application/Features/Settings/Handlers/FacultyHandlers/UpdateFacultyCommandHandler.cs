@@ -29,11 +29,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.FacultyHandlers
         public async Task<BaseResponse<FacultyResponse>> Handle(UpdateFacultyCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<FacultyResponse>();
-            var validator = new UpdateFacultyDtoValidator(_FacultyRepository);
-            var validationResult = await validator.ValidateAsync(request.UpdateFacultyDto);
+            //var validator = new UpdateFacultyDtoValidator(_FacultyRepository);
+            //var validationResult = await validator.ValidateAsync(request.UpdateFacultyDto);
 
-            if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult);
+            //if (validationResult.IsValid == false)
+            //    throw new ValidationException(validationResult);
             //response.IsSuccess = false;
             //response.Message = "Update Failed";
             //response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();

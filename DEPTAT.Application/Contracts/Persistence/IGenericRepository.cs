@@ -19,7 +19,7 @@ namespace DEPTAT.Application.Contracts.Persistence
         Task<T> InsertRange(IEnumerable<T> entities);
         Task<bool> Exists(Expression<Func<T, bool>> expression);
         Task Update(T entity);
-        Task Delete(T entity);
+        Task Delete(int id);
         void DeleteRange(IEnumerable<T> entities);
     }
 }

@@ -11,7 +11,7 @@ namespace DEPTAT.Application.Features.Settings.Commands.CourseCommands
 {
     public class UpdateCourseCommand:IRequest<BaseResponse<CourseResponse>>
     {
-        public UpdateCourseDto UpdateCourseDto { get; }
+        public UpdateCourseDto UpdateCourseDto { get; set; }
 
     }
 }

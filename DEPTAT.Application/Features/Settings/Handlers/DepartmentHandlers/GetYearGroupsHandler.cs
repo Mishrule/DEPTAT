@@ -11,7 +11,7 @@ using MediatR;
 
 namespace DEPTAT.Application.Features.Settings.Handlers.DepartmentHandlers
 {
-    public class GetDepartmentsHandler : IRequestHandler<GetDepartmentQuery, BaseResponseList<DepartmentResponse>>
+    public class GetDepartmentsHandler : IRequestHandler<GetDepartmentsQuery, BaseResponseList<DepartmentResponse>>
     {private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
@@ -21,7 +21,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.DepartmentHandlers
             _mapper = mapper;
         }
 
-        public async Task<BaseResponseList<DepartmentResponse>> Handle(GetDepartmentQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponseList<DepartmentResponse>> Handle(GetDepartmentsQuery request, CancellationToken cancellationToken)
         {
             var responseList = new BaseResponseList<DepartmentResponse>();
             var DepartmentList = await _unitOfWork.DepartmentRepository.GetAll();

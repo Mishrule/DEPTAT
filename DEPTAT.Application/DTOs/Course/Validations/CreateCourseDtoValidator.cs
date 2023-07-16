@@ -16,12 +16,7 @@ namespace DEPTAT.Application.DTOs.Course.Validations
         {
             _courseRepository = courseRepository;
             RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertName} Year Group cannot be empty")
-                .MustAsync(async (name, token) =>
-                {
-                    var nameExist = await _courseRepository.Exists(n => n.Name.Equals(name));
-                    return nameExist;
-                }).WithMessage("{Property} already exist");
+                .NotEmpty().WithMessage("{PropertName} Year Group cannot be empty");
 
             RuleFor(f => f.ProgrammeId).NotNull().WithMessage("{PropertyName} is required");
         }

@@ -11,7 +11,7 @@ namespace DEPTAT.Application.Features.Settings.Commands.DepartmentCommands
 {
     public class UpdateDepartmentCommand: IRequest<BaseResponse<DepartmentResponse>>
     {
-      public  UpdateDepartmentDto UpdateDepartmentDto { get; }
+      public  UpdateDepartmentDto UpdateDepartmentDto { get; set; }
 
     }
 }

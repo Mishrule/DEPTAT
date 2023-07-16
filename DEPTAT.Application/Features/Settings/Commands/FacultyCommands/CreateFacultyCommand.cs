@@ -11,7 +11,7 @@ namespace DEPTAT.Application.Features.Settings.Commands.FacultyCommands
 {
     public class CreateFacultyCommand:IRequest<BaseResponse<FacultyResponse>>
     {
-        public CreateFacultyDto CreateFacultyDto { get; }
+        public CreateFacultyDto CreateFacultyDto { get; set; }
         
 
     }

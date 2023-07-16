@@ -29,11 +29,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.CourseHandlers
         public async Task<BaseResponse<CourseResponse>> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<CourseResponse>();
-            var validator = new UpdateCourseDtoValidator(_CourseRepository);
-            var validationResult = await validator.ValidateAsync(request.UpdateCourseDto);
+            //var validator = new UpdateCourseDtoValidator(_CourseRepository);
+            //var validationResult = await validator.ValidateAsync(request.UpdateCourseDto);
 
-            if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult);
+            //if (validationResult.IsValid == false)
+            //    throw new ValidationException(validationResult);
             //response.IsSuccess = false;
             //response.Message = "Update Failed";
             //response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
@@ -48,11 +48,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.CourseHandlers
             if (save)
             {
                 response.IsSuccess = true;
-                response.Message = "Success: Record updated Successfully";
+                response.Message = "Record updated Successfully";
             }
             else
             {
-                response.Message = "Error: Update Failed Try again";
+                response.Message = "Update Failed Try again";
                 response.IsSuccess = false;
             }
 

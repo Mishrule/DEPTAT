@@ -11,6 +11,6 @@ namespace DEPTAT.Application.Features.Settings.Commands.DepartmentCommands
 {
     public class CreateDepartmentCommand : IRequest<BaseResponse<DepartmentResponse>>
     {
-      public  CreateDepartmentDto CreateDepartmentDto { get; }
+      public  CreateDepartmentDto CreateDepartmentDto { get; set; }
     }
 }

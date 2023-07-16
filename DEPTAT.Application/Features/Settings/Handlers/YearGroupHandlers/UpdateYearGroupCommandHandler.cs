@@ -29,11 +29,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.YearGroupHandlers
         public async Task<BaseResponse<YearGroupResponse>> Handle(UpdateYearGroupCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<YearGroupResponse>();
-            var validator = new UpdateYearGroupValidator(_yearGroupRepository);
-            var validationResult = await validator.ValidateAsync(request.UpdateYearGroupDto);
+            //var validator = new UpdateYearGroupValidator(_yearGroupRepository);
+            //var validationResult = await validator.ValidateAsync(request.UpdateYearGroupDto);
 
-            if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult);
+            //if (validationResult.IsValid == false)
+            //    throw new ValidationException(validationResult);
             //response.IsSuccess = false;
             //response.Message = "Update Failed";
             //response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();

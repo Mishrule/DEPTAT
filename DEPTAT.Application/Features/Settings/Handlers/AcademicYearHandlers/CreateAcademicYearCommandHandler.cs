@@ -33,27 +33,33 @@ namespace DEPTAT.Application.Features.Settings.Handlers.AcademicYearHandlers
             }
             else
             {
-                if (await _unitOfWork.AcademicYearRepository.Exists(n => n.Name == request.CreateAcademicYearDto.Name))
+                var exist = await _unitOfWork.AcademicYearRepository.Exists(n => n.Name == request.CreateAcademicYearDto.Name);
+
+				if (exist)
                 {
                     response.IsSuccess = false;
                     response.Message = "Data already Exist";
-                    
-                }
 
-                var AcademicYearEntity = _mapper.Map<AcademicYear>(request.CreateAcademicYearDto);
-
-                AcademicYearEntity = await _unitOfWork.AcademicYearRepository.Insert(AcademicYearEntity);
-                var save = await _unitOfWork.Save();
-                if (save)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Success: Record save Successfully";
                 }
                 else
                 {
-                    response.Message = "Error: Save Failed Try again";
-                    response.IsSuccess = false;
-                }
+					var AcademicYearEntity = _mapper.Map<AcademicYear>(request.CreateAcademicYearDto);
+
+					AcademicYearEntity = await _unitOfWork.AcademicYearRepository.Insert(AcademicYearEntity);
+					var save = await _unitOfWork.Save();
+					if (save)
+					{
+						response.IsSuccess = true;
+						response.Message = "Success: Record save Successfully";
+					}
+					else
+					{
+						response.Message = "Error: Save Failed Try again";
+						response.IsSuccess = false;
+					}
+				}
+
+               
             }
 
             return response;

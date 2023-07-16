@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DEPTAT.Application.Responses.FacultyResponse>
+<div class="container-fluid">
+	<div class="block-header">
+		<h2>Faculty</h2>
+	</div>
+
+	<div class="row clearfix">
+		<!-- Task Info -->
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<div class="card">
+				<div class="header">
+					<h2>ADD FACULTY</h2>
+				</div>
+				<div class="body">
+					<form>
+						<div class="">
+							<div class="form-line">
+
+								<input type="number" id="facultyId" class="form-control">
+								<label class="form-label">Faculty</label>
+								<input type="text" id="facultyName" class="form-control">
+
+							</div>
+						</div>
+
+						<div class="">
+							<div class="form-line">
+								<label class="form-label">Description</label>
+								<textarea name="description" id="description" cols="15" rows="5" class="form-control no-resize" required></textarea>
+							</div>
+						</div>
+
+						<div align="right">
+							<button type="button" id="saveFaculty" class="btn btn-primary m-t-15 waves-effect">
+								SAVE
+							</button>
+							<button type="button" id="updateFaculty" class="btn btn-primary m-t-15 waves-effect">
+								UPDATE
+							</button>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+		<!-- #END# Task Info -->
+		<!-- Browser Usage -->
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<div class="card">
+				<div class="header">
+					<h2>View</h2>
+				</div>
+				<div class="body">
+					<div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
+						<div class="card">
+							<table class="table table-hover dashboard-task-infos">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if (Model.Any())
+									{
+										@foreach (var data in Model)
+										{
+											<tr>
+												<td>@data.Name</td>
+												<td>@data.Description</td>
+												<td>
+													<span>
+														<i class="material-icons text-primary edit" id="@data.Id" style="cursor:pointer">edit</i>
+													</span>&nbsp;&nbsp;
+													<span>
+														<i class="material-icons text-danger del" id="@data.Id" style="cursor:pointer">delete</i>
+													</span>
+												</td>
+											</tr>
+										}
+
+									}
+									else
+									{
+										<tr>
+											<td colspan="3">Nothing found</td>
+
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #END# Browser Usage -->
+	</div>
+</div>
+<script src="~/js/apps/settings/faculty.js"></script>

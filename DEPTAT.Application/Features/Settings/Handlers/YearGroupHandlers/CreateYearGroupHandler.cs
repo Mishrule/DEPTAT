@@ -39,23 +39,27 @@ namespace DEPTAT.Application.Features.Settings.Handlers.YearGroupHandlers
                 {
                     response.IsSuccess = false;
                     response.Message = "Year Group already Exist";
-                    
-                }
 
-                var yearGroupEntity = _mapper.Map<YearGroup>(request.CreateYearGroupDto);
-
-                yearGroupEntity = await _unitOfWork.YearGroupRepository.Insert(yearGroupEntity);
-                var save = await _unitOfWork.Save();
-                if (save)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Success: Record save Successfully";
                 }
                 else
                 {
-                    response.Message = "Error: Save Failed Try again";
-                    response.IsSuccess = false;
-                }
+					var yearGroupEntity =  _mapper.Map<YearGroup>(request.CreateYearGroupDto);
+
+					yearGroupEntity = await _unitOfWork.YearGroupRepository.Insert(yearGroupEntity);
+					var save = await _unitOfWork.Save();
+					if (save)
+					{
+						response.IsSuccess = true;
+						response.Message = "Success: Record save Successfully";
+					}
+					else
+					{
+						response.Message = "Error: Save Failed Try again";
+						response.IsSuccess = false;
+					}
+				}
+
+               
             }
 
             return response;

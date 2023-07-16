@@ -39,17 +39,39 @@
 <script src = "~/js/pages/index.js"></script>
 <script src="~/js/notification/sweetJs.js"></script>
 <script src="~/js/notification/toastr.min.js"></script>
+<script src="~/lib/bootstrapselect/js/bootstrap-select.min.js"></script>
+<script src="~/lib/bootstrapselect/js/i18n/defaults-*.min.js"></script>
 
 
 <!-- Demo Js -->
 <script src = "~/js/demo.js"></script>
 <script>
-		function showNotificationMessage(title, text, icon ) {
+		function showNotificationErrorMessage(title, text, icon ) {
 			swal({
 				title: title,
 				text: text,
 				icon: icon
 			});
 		}
+
+
+		function showNotificationSuccessMessage(message, title){
+		toastr.options = {
+			positionClass: 'toast-bottom-right',
+			timeOut: 5000
+		};
+			toastr.success(message, title);
+
+		}
+
+
+	//function on() {
+	//	$(".page-loader-wrapper").eq(0).css("display", "block");
+	//}
+
+	//function off() {
+	//	$(".page-loader-wrapper").eq(0).css("display", "none");
+	//}
+
 </script>
 

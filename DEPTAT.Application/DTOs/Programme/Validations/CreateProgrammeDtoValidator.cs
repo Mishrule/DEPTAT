@@ -16,12 +16,7 @@ namespace DEPTAT.Application.DTOs.Programme.Validations
         {
             _ProgrammeRepository = programmeRepository;
             RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertName} Year Group cannot be empty")
-                .MustAsync(async (name, token) =>
-                {
-                    var nameExist = await _ProgrammeRepository.Exists(n => n.Name.Equals(name));
-                    return nameExist;
-                }).WithMessage("{Property} already exist");
+                .NotEmpty().WithMessage("{PropertName} Year Group cannot be empty");
 
             RuleFor(p => p.DepartmentId)
                 .NotNull().WithMessage("{PropertyName} is not empty");

@@ -29,11 +29,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.ProgrammeHandlers
         public async Task<BaseResponse<ProgrammeResponse>> Handle(UpdateProgrammeCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<ProgrammeResponse>();
-            var validator = new UpdateProgrammeDtoValidator(_ProgrammeRepository);
-            var validationResult = await validator.ValidateAsync(request.UpdateProgrammeDto);
+            //var validator = new UpdateProgrammeDtoValidator(_ProgrammeRepository);
+            //var validationResult = await validator.ValidateAsync(request.UpdateProgrammeDto);
 
-            if (validationResult.IsValid == false)
-                throw new ValidationException(validationResult);
+            //if (validationResult.IsValid == false)
+            //    throw new ValidationException(validationResult);
             //response.IsSuccess = false;
             //response.Message = "Update Failed";
             //response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
@@ -48,11 +48,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.ProgrammeHandlers
             if (save)
             {
                 response.IsSuccess = true;
-                response.Message = "Success: Record updated Successfully";
+                response.Message = "Record updated Successfully";
             }
             else
             {
-                response.Message = "Error: Update Failed Try again";
+                response.Message = "Update Failed Try again";
                 response.IsSuccess = false;
             }
 

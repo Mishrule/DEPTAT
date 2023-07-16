@@ -11,7 +11,7 @@ namespace DEPTAT.Application.Features.Settings.Commands.FacultyCommands
 {
     public class UpdateFacultyCommand: IRequest<BaseResponse<FacultyResponse>>
     {
-        public UpdateFacultyDto UpdateFacultyDto { get; }
+        public UpdateFacultyDto UpdateFacultyDto { get; set; }
 
     }
 }

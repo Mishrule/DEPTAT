@@ -47,11 +47,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.ProgrammeHandlers
                 if (save)
                 {
                     response.IsSuccess = true;
-                    response.Message = "Success: Record save Successfully";
+                    response.Message = "Record saved Successfully";
                 }
                 else
                 {
-                    response.Message = "Error: Save Failed Try again";
+                    response.Message = "Save Failed Try again";
                     response.IsSuccess = false;
                 }
             }

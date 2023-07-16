@@ -33,7 +33,9 @@ namespace DEPTAT.Application.Features.Settings.Handlers.YearGroupHandlers
             }
             else
             {
-                if (await _unitOfWork.YearGroupRepository.Exists(n => n.Name == request.CreateYearGroupDto.Name))
+                var exist = await _unitOfWork.YearGroupRepository.Exists(n =>
+                    n.Name == request.CreateYearGroupDto.Name);
+                if (exist)
                 {
                     response.IsSuccess = false;
                     response.Message = "Year Group already Exist";

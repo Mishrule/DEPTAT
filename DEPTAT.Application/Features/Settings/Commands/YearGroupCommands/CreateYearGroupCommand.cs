@@ -11,7 +11,7 @@ namespace DEPTAT.Application.Features.Settings.Commands.YearGroupCommands
 {
     public class CreateYearGroupCommand:IRequest<BaseResponse<YearGroupResponse>>
     {
-        public CreateYearGroupDto CreateYearGroupDto { get; }
+        public CreateYearGroupDto CreateYearGroupDto { get; set; }
         
     }
 }

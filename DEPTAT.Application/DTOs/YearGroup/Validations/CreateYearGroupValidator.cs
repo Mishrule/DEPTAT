@@ -16,12 +16,8 @@ namespace DEPTAT.Application.DTOs.YearGroup.Validations
         {
             _yearGroupRepository = yearGroupRepository;
             RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertName} Year Group cannot be empty")
-                .MustAsync(async (name, token) =>
-                {
-                    var nameExist = await _yearGroupRepository.Exists(n => n.Name.Equals(name));
-                    return nameExist;
-                }).WithMessage("{Property} already exist");
+                .NotEmpty().WithMessage("{PropertName} Year Group cannot be empty");
+
         }
     }
 }

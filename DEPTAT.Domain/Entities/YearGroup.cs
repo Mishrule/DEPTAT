@@ -11,7 +11,7 @@ namespace DEPTAT.Domain.Entities
     public class YearGroup : BaseDomainEntity
     {
         [Required]
-        public string Name { get; set; }
+        public int Name { get; set; }
         public string? Description { get; set; }
     }
 }

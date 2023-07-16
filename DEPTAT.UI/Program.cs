@@ -1,13 +1,20 @@
+using DEPTAT.Application;
+using DEPTAT.Persistence;
+
 namespace DEPTAT.UI
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            //builder.Services.AddControllersWithViews();
+            //builder.Services.ConfigurePersistenceServices(builder.Configuration);
+            // Add services to the container.
+            ConfigureServices(builder.Services, builder.Configuration); // Call the ConfigureServices method to register the persistence services
 
             var app = builder.Build();
 
@@ -31,6 +38,17 @@ namespace DEPTAT.UI
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+        }
+
+        private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddHttpContextAccessor();
+            // Register your persistence services here
+            services.ConfigurePersistenceServices(configuration);
+            services.ConfigureApplicationServices();
+
+            // Additional services can be registered here if needed
+            services.AddControllersWithViews();
         }
     }
 }

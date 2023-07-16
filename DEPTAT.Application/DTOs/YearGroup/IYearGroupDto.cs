@@ -8,7 +8,7 @@ namespace DEPTAT.Application.DTOs.YearGroup
 {
     public interface IYearGroupDto
     {
-        public string Name { get; set; }
+        public int Name { get; set; }
         public string? Description { get; set; }
     }
 }

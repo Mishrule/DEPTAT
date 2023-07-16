@@ -49,4 +49,17 @@
     <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\DEPTAT.Application\DEPTAT.Application.csproj" />
+    <ProjectReference Include="..\DEPTAT.Persistance\DEPTAT.Persistance.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -12,5 +12,6 @@ namespace DEPTAT.Application.Responses
         public string Name { get; set; }
         public string Description { get; set; }
         public int DepartmentId { get; set; }
+        public DepartmentResponse Department { get; set; }
     }
 }

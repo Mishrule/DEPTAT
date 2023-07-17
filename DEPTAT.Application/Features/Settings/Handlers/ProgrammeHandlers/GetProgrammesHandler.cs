@@ -24,7 +24,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.ProgrammeHandlers
         public async Task<BaseResponseList<ProgrammeResponse>> Handle(GetProgrammesQuery request, CancellationToken cancellationToken)
         {
             var responseList = new BaseResponseList<ProgrammeResponse>();
-            var ProgrammeList = await _unitOfWork.ProgrammeRepository.GetAll();
+            var ProgrammeList = await _unitOfWork.ProgrammeRepository.GetAll(includes: new List<string> { "Department" });
             responseList.Result = _mapper.Map<IEnumerable<ProgrammeResponse>>(ProgrammeList);
             responseList.Message = "Success";
             responseList.IsSuccess = true;

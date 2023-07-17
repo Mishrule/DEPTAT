@@ -1,6 +1,7 @@
 ﻿using DEPTAT.Application.DTOs.Course;
 using DEPTAT.Application.Features.Settings.Commands.CourseCommands;
 using DEPTAT.Application.Features.Settings.Queries.CourseQuery;
+using DEPTAT.Application.Features.Settings.Queries.DepartmentQuery;
 using DEPTAT.Application.Features.Settings.Queries.ProgrammesQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
@@ -66,6 +67,13 @@ namespace DEPTAT.UI.Controllers
 			var command = new DeleteCourseCommand { Id = id };
 			var response = await _mediator.Send(command);
 			return Ok(response);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Detailed()
+		{
+			var CourseName = await _mediator.Send(new GetCoursesQuery());
+			return View(CourseName.Result?.OrderByDescending(o => o.Id).ToList());
 		}
 	}
 }

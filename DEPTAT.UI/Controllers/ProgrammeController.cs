@@ -68,6 +68,14 @@ namespace DEPTAT.UI.Controllers
 			var response = await _mediator.Send(command);
 			return Ok(response);
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> Detailed()
+		{
+			var ProgrammeName = await _mediator.Send(new GetProgrammesQuery());
+			return View(ProgrammeName.Result?.OrderByDescending(o => o.Id).ToList());
+		}
+
 	}
 }
 

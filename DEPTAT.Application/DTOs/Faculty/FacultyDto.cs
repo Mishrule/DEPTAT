@@ -7,7 +7,7 @@ using DEPTAT.Domain.Common;
 
 namespace DEPTAT.Application.DTOs.Faculty
 {
-    internal class FacultyDto:BaseDomainEntity
+    public class FacultyDto:BaseDomainEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -24,7 +24,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.CourseHandlers
         public async Task<BaseResponseList<CourseResponse>> Handle(GetCoursesQuery request, CancellationToken cancellationToken)
         {
             var responseList = new BaseResponseList<CourseResponse>();
-            var CourseList = await _unitOfWork.CourseRepository.GetAll();
+            var CourseList = await _unitOfWork.CourseRepository.GetAll(includes: new List<string> { "Programme" });
             responseList.Result = _mapper.Map<IEnumerable<CourseResponse>>(CourseList);
             responseList.Message = "Success";
             responseList.IsSuccess = true;

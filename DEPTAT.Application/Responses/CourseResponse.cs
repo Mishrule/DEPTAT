@@ -13,5 +13,6 @@ namespace DEPTAT.Application.Responses
         public string Description { get; set; }
         public string Code { get; set; }
         public int ProgrammeId { get; set; }
+        public ProgrammeResponse Programme { get; set; }
     }
 }

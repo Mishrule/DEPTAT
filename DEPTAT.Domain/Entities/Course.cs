@@ -16,5 +16,6 @@ namespace DEPTAT.Domain.Entities
         [Required]
         public string Code { get; set; }
         public int ProgrammeId { get; set; }
+        public Programme Programme { get; set; }
     }
 }

@@ -141,15 +141,21 @@
     <li>
         <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">swap_calls</i>
-            <span>Departments</span>
+            <span>Details and Exports</span>
         </a>
         <ul class="ml-menu">
             <li>
-                <a href="pages/ui/alerts.html">Manage Department</a>
+                <a asp-controller="Department" asp-action="Detailed">Department</a>
             </li>
             <li>
-                <a href="pages/ui/animations.html">View Department</a>
+                <a asp-controller="Programme" asp-action="Detailed">Programme</a>
             </li>
+            <li>
+                <a asp-controller="Course" asp-action="Detailed">Course</a>
+            </li>
+            @*<li>
+                <a href="pages/ui/animations.html">View Department</a>
+            </li>*@
            @* <li>
                 <a href="pages/ui/badges.html">Badges</a>
             </li>

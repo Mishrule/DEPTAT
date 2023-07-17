@@ -1,6 +1,7 @@
 ﻿using DEPTAT.Application.DTOs.Course;
 using DEPTAT.Application.Features.Settings.Commands.CourseCommands;
 using DEPTAT.Application.Features.Settings.Queries.CourseQuery;
+using DEPTAT.Application.Features.Settings.Queries.ProgrammesQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,9 @@ namespace DEPTAT.UI.Controllers
 
 		public async Task<IActionResult> Index()
 		{
+			var programmeList = await _mediator.Send(new GetProgrammesQuery());
+			ViewBag.ProgrammeList = programmeList.Result?.OrderByDescending(o => o.Id).ToList();
+
 			var CourseName = await _mediator.Send(new GetCoursesQuery());
 			return View(CourseName.Result?.OrderByDescending(o => o.Id).ToList());
 		}

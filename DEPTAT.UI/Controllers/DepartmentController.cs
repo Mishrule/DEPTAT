@@ -1,6 +1,7 @@
 ﻿using DEPTAT.Application.DTOs.Department;
 using DEPTAT.Application.Features.Settings.Commands.DepartmentCommands;
 using DEPTAT.Application.Features.Settings.Queries.DepartmentQuery;
+using DEPTAT.Application.Features.Settings.Queries.FacultyQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,8 @@ namespace DEPTAT.UI.Controllers
 
 		public async Task<IActionResult> Index()
 		{
+			var facultyList = await _mediator.Send(new GetFacultiesQuery());
+			ViewBag.FacultyList = facultyList.Result?.OrderByDescending(o => o.Id).ToList();
 			var DepartmentName = await _mediator.Send(new GetDepartmentsQuery());
 			return View(DepartmentName.Result?.OrderByDescending(o => o.Id).ToList());
 		}

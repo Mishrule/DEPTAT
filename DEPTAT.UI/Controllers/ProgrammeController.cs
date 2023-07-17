@@ -1,5 +1,6 @@
 ﻿using DEPTAT.Application.DTOs.Programme;
 using DEPTAT.Application.Features.Settings.Commands.ProgrammeCommands;
+using DEPTAT.Application.Features.Settings.Queries.DepartmentQuery;
 using DEPTAT.Application.Features.Settings.Queries.ProgrammesQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
@@ -20,6 +21,10 @@ namespace DEPTAT.UI.Controllers
 
 		public async Task<IActionResult> Index()
 		{
+			var departmentList = await _mediator.Send(new GetDepartmentsQuery());
+			ViewBag.DepartmentList = departmentList.Result?.OrderByDescending(o => o.Id).ToList();
+
+
 			var ProgrammeName = await _mediator.Send(new GetProgrammesQuery());
 			return View(ProgrammeName.Result?.OrderByDescending(o => o.Id).ToList());
 		}

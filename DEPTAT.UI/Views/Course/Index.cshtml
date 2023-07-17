@@ -1,4 +1,8 @@
-﻿@model IEnumerable<DEPTAT.Application.Responses.CourseResponse>
+﻿
+@model IEnumerable<DEPTAT.Application.Responses.CourseResponse>
+@{
+	var programmeList = ViewBag.ProgrammeList as List<ProgrammeResponse>;
+}
 <div class="container-fluid">
 	<div class="block-header">
 		<h2>Course</h2>
@@ -31,21 +35,21 @@
 							</div>
 						</div>
 
-						<div class="row" style="margin-top:10px;">
-							<div class="col-md-12">
-								<label class="form-label">Programme</label>
-								<div class="form-group">
-
-									<select id="programmeId" class="selectpicker form-control">
+						<div class = "row" style = "margin-top: 10px;">
+							<div class = "col-md-12">
+								<label class = "form-label">Programme</label>
+								<div class = "form-group">
+									<select id = "programmeId" class = "selectpicker form-control">
 										<option>Select Programme</option>
-										<option value="1">FOE</option>
-										<option value="2">FMMT</option>
-										<option value="3">CE</option>
+										@foreach (var programme in programmeList)
+										{
+											<option value = "@programme.Id">@programme.Name</option>
+										}
 									</select>
-
 								</div>
 							</div>
 						</div>
+
 
 						<div class="">
 							<div class="form-line">

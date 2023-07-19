@@ -1,18 +1,12 @@
 ﻿using AutoMapper;
 using DEPTAT.Application.Contracts.Persistence;
+using DEPTAT.Application.DTOs.Student.Validations;
 using DEPTAT.Application.Exceptions;
-using DEPTAT.Application.Features.Settings.Commands.ProgrammeCommands;
-using DEPTAT.Application.Features.Settings.Commands.StudentCommands;
+using DEPTAT.Application.Features.Students.Commands.StudentCommands;
 using DEPTAT.Application.Responses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DEPTAT.Application.DTOs.Student.Validations;
 
-namespace DEPTAT.Application.Features.Settings.Handlers.StudentHandlers
+namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
 {
     public class UpdateStudentHandler : IRequestHandler<UpdateStudentCommand, BaseResponse<StudentResponse>>
     {

@@ -1,12 +1,7 @@
 ﻿using DEPTAT.Application.Responses;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DEPTAT.Application.Features.Settings.Queries.StudentQuery.cs
+namespace DEPTAT.Application.Features.Students.Queries.StudentQuery
 {
     public class GetStudentByIdQuery : IRequest<BaseResponse<StudentResponse>>
     {

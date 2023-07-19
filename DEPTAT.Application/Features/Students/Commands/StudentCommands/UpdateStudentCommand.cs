@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DEPTAT.Application.DTOs.Student;
 
-namespace DEPTAT.Application.Features.Settings.Commands.StudentCommands
+namespace DEPTAT.Application.Features.Students.Commands.StudentCommands
 {
     public class UpdateStudentCommand : IRequest<BaseResponse<StudentResponse>>
     {

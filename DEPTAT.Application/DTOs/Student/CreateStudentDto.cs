@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DEPTAT.Application.DTOs.Programme;
 
 namespace DEPTAT.Application.DTOs.Student
 {
@@ -15,7 +16,9 @@ namespace DEPTAT.Application.DTOs.Student
         public int Status { get; set; }
         public string AcademicYear { get; set; }
         public string ClassYear { get; set; }
+        public int YearGroup { get; set; }
         public string AdmittedYear { get; set; }
+        public int Level { get; set; }
         public int ProgrammeId { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

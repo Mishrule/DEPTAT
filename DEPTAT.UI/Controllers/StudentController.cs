@@ -1,6 +1,11 @@
 ﻿using DEPTAT.Application.DTOs.Student;
 using DEPTAT.Application.Features.Settings.Commands.FacultyCommands;
 using DEPTAT.Application.Features.Settings.Commands.StudentCommands;
+using DEPTAT.Application.Features.Settings.Queries.CourseQuery;
+using DEPTAT.Application.Features.Settings.Queries.DepartmentQuery;
+using DEPTAT.Application.Features.Settings.Queries.ProgrammesQuery;
+using DEPTAT.Application.Features.Students.Commands.StudentCommands;
+using DEPTAT.Application.Features.Students.Queries.StudentQuery;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +23,11 @@ namespace DEPTAT.UI.Controllers
             _mediator = mediator;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var programmeList = await _mediator.Send(new GetProgrammesQuery());
+            ViewBag.ProgrammeList = programmeList.Result?.OrderByDescending(o => o.Id).ToList();
+
             return View();
         }
 
@@ -45,5 +53,18 @@ namespace DEPTAT.UI.Controllers
             return Json(response); // Return the user's ID as JSON response
         }
 
+        //[HttpGet]
+        //public async Task<IActionResult> Detailed()
+        //{
+        //    var CourseName = await _mediator.Send(new GetStudentsQuery());
+        //    return View(CourseName.Result.ToList());
+        //}
+
+        [HttpGet]
+        public async Task<IActionResult> Detailed()
+        {
+            var student = await _mediator.Send(new GetStudentsQuery());
+            return View(student.Result?.OrderByDescending(o => o.Id).ToList());
+        }
     }
 }

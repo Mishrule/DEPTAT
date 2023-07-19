@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DEPTAT.Application.Features.Settings.Queries.StudentQuery.cs;
+using DEPTAT.Application.Features.Students.Queries.StudentQuery;
 
-namespace DEPTAT.Application.Features.Settings.Handlers.StudentHandlers
+namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
 {
     public class GetStudentByIdHandler : IRequestHandler<GetStudentByIdQuery, BaseResponse<StudentResponse>>
     {
@@ -38,8 +38,8 @@ namespace DEPTAT.Application.Features.Settings.Handlers.StudentHandlers
                 response.IsSuccess = false;
                 response.Message = e.Message;
             }
-            
-            
+
+
             return response;
         }
     }

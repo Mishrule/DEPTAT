@@ -1,11 +1,12 @@
-﻿<div class="container-fluid">
+﻿
+@{
+	var programmeList = ViewBag.ProgrammeList as List<ProgrammeResponse>;
+}
+
+<div class="container-fluid">
 	<div class="block-header">
 		<h2>Student</h2>
 	</div>
-	
-	
-	
-	
 	
 	<!-- Horizontal Layout -->
 	<div class="row clearfix">
@@ -58,7 +59,7 @@
 							<input type="text" id="studendIt" hidden="hidden" class="form-control">
 							<div class="form-group">
 								<div class="form-line">
-									<input type="text" id="indexNumber" name="IndexNumber" class="form-control" placeholder="Enter your email address">
+									<input type="text" id="indexNumber" name="IndexNumber" class="form-control" placeholder="Enter your Index Number">
 								</div>
 							</div>
 						</div>
@@ -70,7 +71,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="firstName" name="FirstName" class="form-control" placeholder="Enter your password">
+										<input type="text" id="firstName" name="FirstName" class="form-control" placeholder="Enter your First Name">
 									</div>
 								</div>
 							</div>
@@ -84,7 +85,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="otherName" name="OtherName" class="form-control" placeholder="Enter your email address">
+										<input type="text" id="otherName" name="OtherName" class="form-control" placeholder="Enter your Other Name">
 									</div>
 								</div>
 							</div>
@@ -96,7 +97,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="lastName" name="LastName" class="form-control" placeholder="Enter your password">
+										<input type="text" id="lastName" name="LastName" class="form-control" placeholder="Enter your Last Name">
 									</div>
 								</div>
 							</div>
@@ -115,34 +116,69 @@
 								</div>
 							</div>
 						</div>*@
-						<div class="row clearfix">
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-								<label for="status">Status</label>
-							</div>
-							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-								<div class="form-group">
-									<div class="form-line">
-										<select class="form-control show-tick" name="Status">
-											<option value="0">-- Please select --</option>
-											<option value="1">In School</option>
-											<option value="2">Rusticated</option>
-											<option value="3">Withdrawn</option>
-											<option value="4">Dismissed</option>
-											<option value="5">Complete</option>
+					<div class="row clearfix">
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+							<label for="status">Status</label>
+						</div>
+						<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+							<div class="form-group">
+								<div class="form-line">
+									<select class="form-control show-tick" name="Status">
+										<option value="0">-- Please select --</option>
+										<option value="1">In School</option>
+										<option value="2">Rusticated</option>
+										<option value="3">Withdrawn</option>
+										<option value="4">Dismissed</option>
+										<option value="5">Complete</option>
 
-										</select>
-									</div>
+									</select>
 								</div>
 							</div>
 						</div>
-						<div class="row clearfix">
+					</div>
+					
+					<div class="row clearfix">
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+							<label for="status">Level</label>
+						</div>
+						<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+							<div class="form-group">
+								<div class="form-line">
+									<select class="form-control show-tick" name="Level">
+										<option value="0">-- Please select --</option>
+										<option value="100">100</option>
+										<option value="200">200</option>
+										<option value="300">300</option>
+										<option value="400">400</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="row clearfix">
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+							<label for="academicYear">Year Group</label>
+						</div>
+						<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+							<div class="form-group">
+								<div class="form-line">
+									<input type="text" id="yearGroup" name="YearGroup" class="form-control" placeholder="Enter your Year Group">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+
+					<div class="row clearfix">
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
 								<label for="academicYear">Academic Year</label>
 							</div>
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="academicYear" name="AcademicYear" class="form-control" placeholder="Enter your password">
+										<input type="text" id="academicYear" name="AcademicYear" class="form-control" placeholder="Enter your Academic Year">
 									</div>
 								</div>
 							</div>
@@ -156,7 +192,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="classYear" name="ClassYear" class="form-control" placeholder="Enter your email address">
+										<input type="text" id="classYear" name="ClassYear" class="form-control" placeholder="Enter your Class Year">
 									</div>
 								</div>
 							</div>
@@ -168,7 +204,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="admittedYear" name="AdmittedYear" class="form-control" placeholder="Enter your password">
+										<input type="text" id="admittedYear" name="AdmittedYear" class="form-control" placeholder="Enter your Admitted Year">
 									</div>
 								</div>
 							</div>
@@ -182,7 +218,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="phoneNumber" name="PhoneNumber" class="form-control" placeholder="Enter your email address">
+										<input type="text" id="phoneNumber" name="PhoneNumber" class="form-control" placeholder="Enter your Phone Number">
 									</div>
 								</div>
 							</div>
@@ -211,11 +247,10 @@
 									<div class="form-line">
 										<select class="form-control show-tick" id="programmeId" name="ProgrammeId">
 											<option value="0">-- Please select --</option>
-											<option value="1">In School</option>
-											<option value="2">Rusticated</option>
-											<option value="3">Withdrawn</option>
-											<option value="4">Dismissed</option>
-											<option value="5">Complete</option>
+											@foreach (var programme in programmeList)
+											{
+												<option value="@programme.Id">@programme.Name</option>
+											}
 										</select>
 									</div>
 								</div>
@@ -283,9 +318,12 @@
 					// Handle the success response here
 					if (response.isSuccess) {
 						showNotificationSuccessMessage(response.message, "Success");
+
 					} else {
 						showNotificationErrorMessage("Failed", response.message, "error");
 					}
+					$('#registerForm')[0].reset();
+					imgPreview.innerHTML = "";
 				},
 				error: function (xhr, status, error) {
 					// Handle the error response here

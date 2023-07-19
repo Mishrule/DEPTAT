@@ -5,6 +5,7 @@ using DEPTAT.Application.DTOs.Course;
 using DEPTAT.Application.DTOs.Department;
 using DEPTAT.Application.DTOs.Faculty;
 using DEPTAT.Application.DTOs.Programme;
+using DEPTAT.Application.DTOs.Student;
 using DEPTAT.Application.DTOs.YearGroup;
 using DEPTAT.Application.Responses;
 using DEPTAT.Domain.Entities;
@@ -51,10 +52,22 @@ namespace DEPTAT.Application.Profiles
 			CreateMap<Course, UpdateCourseDto>().ReverseMap();
 
 
-			CreateMap<AdmittedClass, AdmittedClassDto>().ReverseMap();
-            #endregion
 
-        }
+
+
+			CreateMap<AdmittedClass, AdmittedClassDto>().ReverseMap();
+			#endregion
+
+
+			#region Students
+			CreateMap<Student, StudentDto>().ReverseMap();
+			CreateMap<Student, CreateStudentDto>().ReverseMap();
+			CreateMap<Student, StudentResponse>().ReverseMap();
+			CreateMap<Student, UpdateStudentDto>().ReverseMap();
+
+
+			#endregion
+		}
 
 
     }

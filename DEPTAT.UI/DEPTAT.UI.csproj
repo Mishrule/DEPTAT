@@ -62,4 +62,9 @@
     <ProjectReference Include="..\DEPTAT.Persistance\DEPTAT.Persistance.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

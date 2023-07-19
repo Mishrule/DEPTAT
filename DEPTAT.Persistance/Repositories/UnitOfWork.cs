@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DEPTAT.Application.Constants;
+using DEPTAT.Persistance.Repositories;
 
 namespace DEPTAT.Persistence.Repositories
 {
@@ -21,6 +22,7 @@ namespace DEPTAT.Persistence.Repositories
         private IDepartmentRepository _departmentRepository;
         private IProgrammeRepository _programmeRepository;
         private ICourseRepository _courseRepository;
+        private IStudentRepository _studentRepository;
 
 
 
@@ -37,6 +39,7 @@ namespace DEPTAT.Persistence.Repositories
         public IDepartmentRepository DepartmentRepository => _departmentRepository ??= new DepartmentRepository(_context);
         public IProgrammeRepository ProgrammeRepository => _programmeRepository ??= new ProgrammeRepository(_context);
         public ICourseRepository CourseRepository => _courseRepository ??= new CourseRepository(_context);
+        public IStudentRepository StudentRepository => _studentRepository ??= new StudentRepository(_context);
 
         public void Dispose()
         {

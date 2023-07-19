@@ -34,3 +34,36 @@
 
 
 
+<style>
+	.file-input-button {
+		display: inline-block;
+		position: relative;
+		overflow: hidden;
+		padding: 0;
+		cursor: pointer;
+		background-color: #2196f3; /* Blue color, you can customize it */
+		color: #fff; /* Text color, you can customize it */
+		border-radius: 4px;
+		padding: 12px 24px;
+		transition: background-color 0.3s ease;
+	}
+
+	.file-input-button input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		cursor: pointer;
+		height: 100%;
+		width: 100%;
+	}
+
+	.file-input-button span {
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	.file-input-button:hover {
+		background-color: #1976d2; /* Darker blue color on hover, you can customize it */
+	}
+</style>

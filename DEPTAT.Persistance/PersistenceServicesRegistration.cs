@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DEPTAT.Application.Contracts.Persistence;
+using DEPTAT.Persistance.Repositories;
 using DEPTAT.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,7 @@ namespace DEPTAT.Persistence
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IAdmittedClassRepository, AdmittedClassRepository>();
             services.AddScoped<IAcademicYearRepository, AcademicYearRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
 
             return services;
         }

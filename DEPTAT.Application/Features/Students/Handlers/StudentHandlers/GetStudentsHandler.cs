@@ -30,6 +30,8 @@ namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
             }
             catch (Exception e)
             {
+                responseList.IsSuccess = false;
+                responseList.Message = e.Message;
                 responseList.Errors.Add(e.Message);
             }
             

@@ -1,0 +1,92 @@
+﻿
+<div class="container-fluid">
+	<div class="block-header">
+		<h2>Student</h2>
+	</div>
+
+	<div class="row clearfix">
+		<!-- Task Info -->
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<div class="card">
+				<div class="header">
+					<h2>DETAILED STUDENT</h2>
+					<div class="header-dropdown m-r--5">
+						<a class="btn btn-primary">
+							<i class="material-icons text-white detail" style="cursor: pointer">arrow_back</i> Back
+						</a>
+					</div>
+				</div>
+				<div class="body">
+					<div class="media">
+						<div class="media-left">
+							<a href="javascript:void(0);">
+								<div id="studentImage"></div>
+							</a>
+						</div>
+						<div class="media-body">
+							<h4 class="media-heading"><span id="studentRef"></span></h4> 
+							<p style="font-weight: bold">Programme: <span id="programmeName" class="text-primary"></span></p>
+							<p style="font-weight: bold">Department: <span class="text-primary" id="department"></span> | Faculty:  <span  id="faculty" class="text-primary"></span></p>
+							<p style="font-weight: bold">Year of Admission: <span id="admittedYear" class="text-primary"></span> | Level:<span class="text-primary" id="level"></span> | Status: <span class="text-primary" id="status"></span></p>
+							<p style="font-weight: bold">Phone Number: <span id="phone" class="text-primary"></span> | Email:<span id="email" class="text-primary"></span> </p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #END# Task Info -->
+		
+	</div>
+</div>
+	<script>
+
+		$(document).ready(function() {
+			setData();
+
+			function setData() {
+				// Get the current URL with the query string
+				var url = window.location.href;
+				var baseurl = $('#base_url').text();
+
+				// Use a regular expression to extract the value of the "Id" parameter
+				var regex = /\/\d+$/;
+				var match = regex.exec(url);
+				var Id = match && match[0].substring(1);
+				// Display the value in the console or use it as needed
+				$.ajax({
+					url: $('#base_url').text() + '/Student/FetchDetailedStudent',
+					type: 'GET',
+					data: { Id: Id },
+
+					success: function(response) {
+						if (response.isSuccess) {
+							if (response.isSuccess) {
+								$("#studentImage").html(`<img class="media-object" src="${baseurl}/uploads/${response.result.imageUrl}" width="120" height="120">`);
+								console.log(response.result);
+								//$("#studendId").val(response.result.id);
+								$("#studentRef").text(response.result.indexNumber +' - '+response.result.fullName);
+							$("#programmeName").text(response.result.programme.name);
+							$("#department").text(response.result.programme.department.name);
+							$("#faculty").text(response.result.programme.department.faculty.name);
+							$("#admittedYear").text(response.result.admittedYear);
+							$("#level").text(response.result.level);
+							$("#status").text(response.result.status);
+							$("#phone").text(response.result.phoneNumber);
+							$("#email").text(response.result.email);
+								//$("#academicYear").val(response.result.academicYear);
+								//$("#classYear").val(response.result.classYear);
+								//$("#admittedYear").val(response.result.admittedYear);
+								//$("#phoneNumber").val(response.result.phoneNumber);
+								//$("#email").val(response.result.email);
+								//$("#programmeId").val(response.result.programmeId);
+
+							}
+						}
+						// window.location.href = response.redirectToUrl;
+
+					}
+				});
+			}
+		});
+</script>

@@ -40,8 +40,8 @@ namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
                 if (student == null)
                     throw new NotFoundException(nameof(student), request.UpdateStudentDto.Id);
 
-                _mapper.Map(request.UpdateStudentDto, student);
-                await _unitOfWork.StudentRepository.Update(student);
+               var entity = _mapper.Map(request.UpdateStudentDto, student);
+                await _unitOfWork.StudentRepository.Update(entity);
                 var save = await _unitOfWork.Save();
                 if (save)
                 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DEPTAT.Application.DTOs.Common;
 using DEPTAT.Application.DTOs.Faculty;
 using DEPTAT.Domain.Common;
 using DEPTAT.Domain.Entities;
@@ -16,7 +17,7 @@ namespace DEPTAT.Application.Responses
         public string OtherName { get; set; }
         public string LastName { get; set; }
         public string FullName => LastName + ", " + FirstName + " " + OtherName;
-        public int Status { get; set; }
+        public StudentStatus Status { get; set; }
         public string AcademicYear { get; set; }
         public string ClassYear { get; set; }
         public int YearGroup { get; set; }

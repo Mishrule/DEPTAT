@@ -15,7 +15,7 @@ namespace DEPTAT.Application.DTOs.Student.Validations
 
         public CreateStudentDtoValidator(IStudentRepository studentRepository)
         {
-            RuleFor(p => p.IndexNumber).NotEmpty().WithMessage("{PropertyName} is required");
+            RuleFor(p => p.StudentNumber).NotEmpty().WithMessage("{PropertyName} is required");
             RuleFor(p => p.FirstName).NotEmpty().WithMessage("{PropertyName} is required");
             RuleFor(p => p.LastName).NotEmpty().WithMessage("{PropertyName} is required");
             RuleFor(p => p.Status).NotEmpty().WithMessage("{PropertyName} is required");

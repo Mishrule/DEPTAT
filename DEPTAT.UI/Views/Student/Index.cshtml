@@ -54,14 +54,14 @@
 						</div>
 					<div class="row clearfix">
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-							<label for="indexNumber">Index Number</label>
+							<label for="indexNumber">Student Number</label>
 						</div>
 						<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 
 							<input type="text" id="studendIt" hidden="hidden" class="form-control">
 							<div class="form-group">
 								<div class="form-line">
-									<input type="text" id="indexNumber" name="IndexNumber" class="form-control" placeholder="Enter your Index Number" value="@Model.IndexNumber">
+									<input type="text" id="indexNumber" name="StudentNumber" class="form-control" placeholder="Enter your Index Number">
 								</div>
 							</div>
 						</div>
@@ -106,18 +106,6 @@
 						</div>
 
 
-						@*<div class="row clearfix">
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-								<label for="status">Status</label>
-							</div>
-							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-								<div class="form-group">
-									<div class="form-line">
-										<input type="text" id="status" name="Status" class="form-control" placeholder="Enter your email address">
-									</div>
-								</div>
-							</div>
-						</div>*@
 					<div class="row clearfix">
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
 							<label for="status">Status</label>
@@ -266,9 +254,9 @@
 								<button type="submit" id="saveCourse" class="btn btn-primary m-t-15 waves-effect">
 									SAVE
 								</button>
-								<button type="button" id="updateCourse" class="btn btn-primary m-t-15 waves-effect">
+								@*<button type="button" id="updateCourse" class="btn btn-primary m-t-15 waves-effect">
 									UPDATE
-								</button>
+								</button>*@
 							</div>
 						</div>
 					</form>
@@ -308,7 +296,16 @@
 			event.preventDefault(); // Prevent the form from submitting normally
 
 			// Create a new FormData object to store the form data
+			//var formData = new FormData(this);
+
+			// Create a new FormData object to store the form data
 			var formData = new FormData(this);
+
+			// Get the selected image file
+			var imageFile = $('#imageUrl')[0].files[0];
+
+			// Add the image file to the formData with the key 'imageUrl'
+			formData.append('imageUrl', imageFile);
 
 			$.ajax({
 				url: $('#base_url').text() + '/Student/Register',

@@ -45,21 +45,39 @@
         </a>
     </li>*@
     
+    <li>
+        <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">library_books</i>
+            <span>Examination</span>
+        </a>
+        <ul class="ml-menu">
             <li>
-                <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">library_books</i>
-                    <span>Examination</span>
-                </a>
-                <ul class="ml-menu">
-                    <li>
-                        <a href="pages/ui/alerts.html">Take Attendance</a>
-                    </li>
-                    <li>
-                        <a href="pages/ui/animations.html">Check Status</a>
-                    </li>
-                   
-                </ul>
+                <a asp-controller="Examination" asp-action="Attendance">Take Attendance</a>
             </li>
+            <li>
+                <a asp-controller="Examination" asp-action="Index">Check Status</a>
+            </li>
+            <li>
+                <a asp-controller="Examination" asp-action="ClockStudent">Clock Attendance</a>
+            </li>
+            <li>
+                <a asp-controller="Examination" asp-action="ViewOTP">View OTPs</a>
+            </li>
+                   
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:void(0);" class="menu-toggle">
+            <i class="material-icons">library_books</i>
+            <span>Account</span>
+        </a>
+        <ul class="ml-menu">
+            <li>
+                        <a asp-controller="Debtors" asp-action="Index">Load Data</a>
+            </li>
+            
+        </ul>
+    </li>
     <li>
         <a href="javascript:void(0);" class="menu-toggle">
             <i class="material-icons">layers</i>

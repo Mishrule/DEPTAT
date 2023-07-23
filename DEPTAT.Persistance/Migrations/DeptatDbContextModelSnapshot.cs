@@ -127,6 +127,57 @@ namespace DEPTAT.Persistance.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("DEPTAT.Domain.Entities.Debtors", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AcademicYear")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("AmountBilled")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("AmountPaid")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Semester")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StudentNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentNumber");
+
+                    b.ToTable("Debtors");
+                });
+
             modelBuilder.Entity("DEPTAT.Domain.Entities.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -196,6 +247,32 @@ namespace DEPTAT.Persistance.Migrations
                     b.ToTable("Faculties");
                 });
 
+            modelBuilder.Entity("DEPTAT.Domain.Entities.Otp", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CurrentYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OtpCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentNumber");
+
+                    b.ToTable("Otps");
+                });
+
             modelBuilder.Entity("DEPTAT.Domain.Entities.Programme", b =>
                 {
                     b.Property<int>("Id")
@@ -235,11 +312,8 @@ namespace DEPTAT.Persistance.Migrations
 
             modelBuilder.Entity("DEPTAT.Domain.Entities.Student", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("StudentNumber")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AcademicYear")
                         .IsRequired()
@@ -260,7 +334,6 @@ namespace DEPTAT.Persistance.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -268,11 +341,6 @@ namespace DEPTAT.Persistance.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IndexNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastModifiedBy")
@@ -293,7 +361,6 @@ namespace DEPTAT.Persistance.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProgrammeId")
@@ -305,7 +372,7 @@ namespace DEPTAT.Persistance.Migrations
                     b.Property<int>("YearGroup")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("StudentNumber");
 
                     b.HasIndex("ProgrammeId");
 
@@ -354,6 +421,17 @@ namespace DEPTAT.Persistance.Migrations
                     b.Navigation("Programme");
                 });
 
+            modelBuilder.Entity("DEPTAT.Domain.Entities.Debtors", b =>
+                {
+                    b.HasOne("DEPTAT.Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("DEPTAT.Domain.Entities.Department", b =>
                 {
                     b.HasOne("DEPTAT.Domain.Entities.Faculty", "Faculty")
@@ -363,6 +441,17 @@ namespace DEPTAT.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("Faculty");
+                });
+
+            modelBuilder.Entity("DEPTAT.Domain.Entities.Otp", b =>
+                {
+                    b.HasOne("DEPTAT.Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("DEPTAT.Domain.Entities.Programme", b =>

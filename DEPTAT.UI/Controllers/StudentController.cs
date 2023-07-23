@@ -35,11 +35,10 @@ namespace DEPTAT.UI.Controllers
             return View();
         }
 
-        [HttpGet("/Student/GetStudent/{Id}")]
+        [HttpGet("/Student/GetStudent/{StudentNumber}")]
         public async Task<IActionResult> GetStudent()
         {
         
-
             var programmeList = await _mediator.Send(new GetProgrammesQuery());
             ViewBag.ProgrammeList = programmeList.Result?.OrderByDescending(o => o.Id).ToList();
 
@@ -70,10 +69,10 @@ namespace DEPTAT.UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> FetchStudent(int Id)
+        public async Task<IActionResult> FetchStudent(string StudentNumber)
         {
 
-            var student = await _mediator.Send(new GetStudentByIdQuery(Id));
+            var student = await _mediator.Send(new GetStudentByIdQuery(StudentNumber));
             
           return Json(student);
         }
@@ -82,10 +81,10 @@ namespace DEPTAT.UI.Controllers
         public async Task<IActionResult> Detailed()
         {
             var student = await _mediator.Send(new GetStudentsQuery());
-            return View(student.Result?.OrderByDescending(o => o.Id).ToList());
+            return View(student.Result?.OrderByDescending(o => o.StudentNumber).ToList());
         }
 
-        [HttpGet("/Student/GetDetailedStudent/{Id}")]
+        [HttpGet("/Student/GetDetailedStudent/{StudentNumber}")]
         public async Task<IActionResult> GetDetailedStudent()
         {
             return View();
@@ -116,10 +115,10 @@ namespace DEPTAT.UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> FetchDetailedStudent(int Id)
+        public async Task<IActionResult> FetchDetailedStudent(string StudentNumber)
         {
 
-            var student = await _mediator.Send(new GetStudentByIdQuery(Id));
+            var student = await _mediator.Send(new GetStudentByIdQuery(StudentNumber));
 
             return Json(student);
         }

@@ -55,16 +55,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.5.2" />
+  </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\DEPTAT.Application\DEPTAT.Application.csproj" />
     <ProjectReference Include="..\DEPTAT.Persistance\DEPTAT.Persistance.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

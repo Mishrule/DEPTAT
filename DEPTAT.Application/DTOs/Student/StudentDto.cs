@@ -11,9 +11,9 @@ using DEPTAT.Domain.Common;
 
 namespace DEPTAT.Application.DTOs.Student
 {
-    public class StudentDto:BaseDomainEntity
+    public class StudentDto
     {
-        public string IndexNumber { get; set; }
+        public string StudentNumber { get; set; }
         public string FirstName { get; set; }
         public string OtherName { get; set; }
         public string LastName { get; set; }
@@ -31,5 +31,9 @@ namespace DEPTAT.Application.DTOs.Student
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string? ImageUrl { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+        public string? LastModifiedBy { get; set; }
     }
 }

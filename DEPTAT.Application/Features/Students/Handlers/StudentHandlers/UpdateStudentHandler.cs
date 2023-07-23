@@ -36,7 +36,7 @@ namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
                 }
 
 
-                var student = await _unitOfWork.StudentRepository.Get(y => y.Id == request.UpdateStudentDto.Id);
+                var student = await _unitOfWork.StudentRepository.Get(y => y.StudentNumber == request.UpdateStudentDto.StudentNumber);
                 if (student == null)
                     throw new NotFoundException(nameof(student), request.UpdateStudentDto.Id);
 

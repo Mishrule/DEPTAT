@@ -1,5 +1,6 @@
 using DEPTAT.Application;
 using DEPTAT.Persistence;
+using OfficeOpenXml;
 
 namespace DEPTAT.UI
 {
@@ -9,6 +10,8 @@ namespace DEPTAT.UI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             // Add services to the container.
             //builder.Services.AddControllersWithViews();

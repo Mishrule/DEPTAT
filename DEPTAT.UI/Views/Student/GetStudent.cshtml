@@ -54,11 +54,10 @@
 								<label for="indexNumber">Index Number</label>
 							</div>
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-
-								<input type="text" id="studendId" hidden="hidden" name="Id" class="form-control">
+								
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="indexNumber" name="IndexNumber" class="form-control" placeholder="Enter your Index Number"  readonly="readonly">
+										<input type="text" id="indexNumber" name="StudentNumber" class="form-control" placeholder="Enter your Index Number"  readonly="readonly">
 									</div>
 								</div>
 							</div>
@@ -310,19 +309,19 @@
 			// Use a regular expression to extract the value of the "Id" parameter
 			var regex = /\/\d+$/;
 			var match = regex.exec(url);
-			var Id = match && match[0].substring(1);
+			var StudentNumber = match && match[0].substring(1);
 			// Display the value in the console or use it as needed
 			$.ajax({
 			    url: $('#base_url').text() + '/Student/FetchStudent',
 			    type: 'GET',
-			    data: { Id: Id },
+				data: { StudentNumber: StudentNumber },
 
 			    success: function(response) {
 			        if (response.isSuccess) {
 				        if (response.isSuccess) {
 							$("#img-preview").html(`<img src="${baseurl}/uploads/${response.result.imageUrl}" width="50%" />`);
-							$("#studendId").val(response.result.id);
-					        $("#indexNumber").val(response.result.indexNumber);
+							//$("#studendId").val(response.result.id);
+					        $("#indexNumber").val(response.result.studentNumber);
 					        $("#firstName").val(response.result.firstName);
 					        $("#otherName").val(response.result.otherName);
 					        $("#lastName").val(response.result.lastName);

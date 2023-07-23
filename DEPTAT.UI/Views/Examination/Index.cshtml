@@ -1,0 +1,142 @@
+﻿@model IEnumerable<DEPTAT.Application.Responses.DebtorsResponse>
+
+<div class="container-fluid">
+
+    <!-- Horizontal Layout -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        CHECK FEE OWING STATUS
+                    </h2>
+                    <div align="center">
+                    </div>
+                    <ul class="header-dropdown m-r--5">
+                        @*<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Add Data</a></li>
+								<li><a href="~/uploads/template/DebtTemplate.xlsx">Download Template</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>*@
+                    </ul>
+                </div>
+                <div class="body">
+                    @*<form action="/target" class="dropzone" id="my-form"></form>*@
+                    <form class="form-horizontal" id="registerForm" method="GET">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 form-control-label">
+                                <label for="file">Student Number:</label>
+                            </div>
+                            <div class="col-lg-4 col-md-5 col-sm-4 col-xs-4">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" id="studentNumber" name="StudentNumber" required="" aria-required="true">
+                                        <label class="form-label">Search Student</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="searchStudent" class="btn btn-primary">Search</button>
+
+							
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Horizontal Layout -->
+    <!-- Horizontal Layout -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        SHOW DEBTORS LIST
+                    </h2>
+					
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div id="showData"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Horizontal Layout -->
+
+</div>
+
+
+<script type="text/ecmascript">
+	$(document).ready(function() {
+	
+		//Upate Year Group
+	$('#searchStudent').click(function() {
+
+		var studentNumber = $('#studentNumber').val();
+		var baseurl = $('#base_url').text();
+		var output =``;
+
+
+		$.ajax({
+			url: $('#base_url').text() + '/Examination/SearchStudent',
+			contentType: "application/json",
+			type: 'GET',
+
+			//data: JSON.stringify(updateDebtor),
+			data: {StudentNumber: studentNumber},
+			success: function(response) {
+				if (response.isSuccess) {
+					if(response.result != null){
+					output =`
+					<div class="media">
+						<div class="media-left">
+							<img class="media-object" src="${baseurl}/uploads/${response.result.student.imageUrl}" width="200" height="200">
+						</div>
+						<div class="media-body">
+							<h4 style="font-weight: bold"><span id="studentRef">${response.result.student.fullName} - (${response.result.studentNumber})</span></h4>
+							<h5 style="font-weight: bold">Programme: <span id="programmeName" class="text-primary">${response.result.student.programme.name}</span></h5>
+							<h5 style="font-weight: bold">Department: <span id="programmeName" class="text-primary">${response.result.student.programme.department.name}</span></h5>
+							<h5 style="font-weight: bold">Faculty: <span id="programmeName" class="text-primary">${response.result.student.programme.department.faculty.name}</span></h5><hr />
+							<h4 style="font-weight: bold">Fees Status: <span class="text-primary" id="department">${response.result.paymentStatus}</span> | Balance:  <span  id="faculty" class="text-primary">${response.result.balance}</span></h4>
+							
+
+						</div>
+					</div>
+					
+					`;
+					}else{
+						output =`
+					<div class="alert bg-green alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								Sorry no bill record found
+							</div>
+					`;
+
+						}
+					
+				} else {
+					output =`
+					<div class="alert bg-green alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								Sorry no bill record found
+							</div>
+					`;
+				}
+	$('#showData').html(output);
+			}
+
+		});
+	});
+
+
+	})
+</script>

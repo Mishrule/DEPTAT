@@ -23,6 +23,8 @@ namespace DEPTAT.Persistence.Repositories
         private IProgrammeRepository _programmeRepository;
         private ICourseRepository _courseRepository;
         private IStudentRepository _studentRepository;
+        private IDebtorRepository _debtorRepository;
+        private IOtpRepository _otpRepository;
 
 
 
@@ -40,6 +42,8 @@ namespace DEPTAT.Persistence.Repositories
         public IProgrammeRepository ProgrammeRepository => _programmeRepository ??= new ProgrammeRepository(_context);
         public ICourseRepository CourseRepository => _courseRepository ??= new CourseRepository(_context);
         public IStudentRepository StudentRepository => _studentRepository ??= new StudentRepository(_context);
+        public IDebtorRepository DebtorRepository => _debtorRepository ??= new DebtorRepository(_context);
+        public IOtpRepository OtpRepository => _otpRepository ??= new OtpRepository(_context);
 
         public void Dispose()
         {

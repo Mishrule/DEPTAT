@@ -11,7 +11,7 @@
 				<div class="header">
 					<h2>DETAILED STUDENT</h2>
 					<div class="header-dropdown m-r--5">
-						<a class="btn btn-primary">
+						<a asp-controller="Student" asp-action="Detailed" class="btn btn-primary">
 							<i class="material-icons text-white detail" style="cursor: pointer">arrow_back</i> Back
 						</a>
 					</div>
@@ -52,12 +52,12 @@
 				// Use a regular expression to extract the value of the "Id" parameter
 				var regex = /\/\d+$/;
 				var match = regex.exec(url);
-				var Id = match && match[0].substring(1);
+				var StudentNumber = match && match[0].substring(1);
 				// Display the value in the console or use it as needed
 				$.ajax({
 					url: $('#base_url').text() + '/Student/FetchDetailedStudent',
 					type: 'GET',
-					data: { Id: Id },
+				data: { StudentNumber: StudentNumber },
 
 					success: function(response) {
 						if (response.isSuccess) {
@@ -65,7 +65,7 @@
 								$("#studentImage").html(`<img class="media-object" src="${baseurl}/uploads/${response.result.imageUrl}" width="120" height="120">`);
 								console.log(response.result);
 								//$("#studendId").val(response.result.id);
-								$("#studentRef").text(response.result.indexNumber +' - '+response.result.fullName);
+								// $("#studentRef").text(response.result.indexNumber +' - '+response.result.fullName);
 							$("#programmeName").text(response.result.programme.name);
 							$("#department").text(response.result.programme.department.name);
 							$("#faculty").text(response.result.programme.department.faculty.name);

@@ -14,4 +14,10 @@ namespace DEPTAT.Application.DTOs.Common
 		Dismissed,
 		Complete
 	}
+
+	public enum Semester
+	{
+		Semester_One =1,
+		Semester_Two =2,
+	}
 }

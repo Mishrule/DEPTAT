@@ -55,7 +55,7 @@
                                             
                                              <td><img src="~/uploads/@data.ImageUrl" width="100%" /></td>
 
-                                            <td>@data.IndexNumber</td>
+                                            <td>@data.StudentNumber</td>
                                             <td>@data.FullName</td>
                                            <td>@data.Programme?.Name</td>
                                             <td>@data.Programme?.Department?.Name</td>
@@ -70,8 +70,8 @@
                                             <td>
                                                 <span>
                                                     @*<a asp-controller="Student" asp-action="GetStudent" asp-route-Id="@data.Id">*@
-                                                        <i class="material-icons text-success update" id="@data.Id" style="cursor: pointer">edit</i>
-                                                    <i class="material-icons text-primary detail" id="@data.Id" style="cursor: pointer">remove_red_eye</i>
+                                                        <i class="material-icons text-success update" id="@data.StudentNumber" style="cursor: pointer">edit</i>
+                                                    <i class="material-icons text-primary detail" id="@data.StudentNumber" style="cursor: pointer">remove_red_eye</i>
                                                     @*</a>*@
                                                    
                                                 </span>
@@ -108,18 +108,18 @@
         $(document).on('click',
             '.update',
             function() {
-                var Id = $(this).attr('id');
+                var StudentNumber = $(this).attr('id');
                 var baseUrl = $('#base_url').text();
-                window.location.href = baseUrl + '/Student/GetStudent/' + Id;
+                window.location.href = baseUrl + '/Student/GetStudent/' + StudentNumber;
                
             });
 
         $(document).on('click',
             '.detail',
             function() {
-                var Id = $(this).attr('id');
+                var StudentNumber = $(this).attr('id');
                 var baseUrl = $('#base_url').text();
-                window.location.href = baseUrl + '/Student/GetDetailedStudent/' + Id;
+                window.location.href = baseUrl + '/Student/GetDetailedStudent/' + StudentNumber;
                
             });
     })

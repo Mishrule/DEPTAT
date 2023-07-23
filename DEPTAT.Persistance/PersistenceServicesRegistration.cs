@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DEPTAT.Application.Contracts.Infrastructure.Excel;
 using DEPTAT.Application.Contracts.Persistence;
+using DEPTAT.Application.Responses;
 using DEPTAT.Persistance.Repositories;
 using DEPTAT.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +34,9 @@ namespace DEPTAT.Persistence
             services.AddScoped<IAdmittedClassRepository, AdmittedClassRepository>();
             services.AddScoped<IAcademicYearRepository, AcademicYearRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
-
+            services.AddScoped<IDebtorRepository, DebtorRepository>();
+            services.AddScoped<ILoadExcelToDb<DebtorsResponse>, LoadExcelToDb>();
+            services.AddScoped<IOtpRepository, OtpRepository>();
             return services;
         }
     }

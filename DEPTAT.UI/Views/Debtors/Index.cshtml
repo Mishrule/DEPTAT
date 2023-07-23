@@ -1,0 +1,322 @@
+﻿
+@model IEnumerable<DEPTAT.Application.Responses.DebtorsResponse>
+
+<div class="container-fluid">
+
+	<!-- Horizontal Layout -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						ADD TO DEBTORS LIST
+					</h2>
+					<div align="center">
+						
+					</div>
+					<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Add Data</a></li>
+								<li><a href="~/uploads/template/DebtTemplate.xlsx">Download Template</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="body">
+					@*<form action="/target" class="dropzone" id="my-form"></form>*@
+					<form class="form-horizontal" id="registerForm" method="post" asp-action="Upload" asp-controller="Debtors" enctype="multipart/form-data">
+
+						<div class="row clearfix">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 form-control-label">
+								<label for="file">Select Excel File:</label>
+							</div>
+							<div class="col-lg-4 col-md-5 col-sm-4 col-xs-4">
+								<label class="custom-file-input" style="margin-top: 10px;">
+									<input type="file" name="file" id="file" class="form-control-file" />
+								</label>
+							</div>
+							<button type="submit" class="btn btn-primary">Upload</button>
+							
+							@*<div class="form-group">
+								
+								
+							</div>
+							<button type="submit" class="btn btn-primary">Upload</button>
+*@
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Horizontal Layout -->
+
+
+
+
+
+	<!-- Horizontal Layout -->
+	<div class="row clearfix">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="card">
+				<div class="header">
+					<h2>
+						SHOW DEBTORS LIST
+					</h2>
+					@*<ul class="header-dropdown m-r--5">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="javascript:void(0);">Add Data</a></li>
+								<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>
+							</ul>
+						</li>
+					</ul>*@
+				</div>
+				<div class="body">
+					@if (Model.Count() != 0)
+					{
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped table-hover dataTable js-exportable">
+								<thead>
+								<tr>
+									
+									<th>Student Number</th>
+									<th>Student</th>
+									<th>Department</th>
+									<th>Programme</th>
+									<th>Faculty</th>
+									<th>Semester</th>
+									<th>Academic Year</th>
+									<th>Amount Paid</th>
+									<th>Amount Billed</th>
+									<th>Balance</th>
+									<th>Payment Status</th>
+									<th>Action</th>
+
+								</tr>
+								</thead>
+								<tbody>
+								@if (Model.Any())
+								{
+									@foreach (var data in Model)
+									{
+										<tr>
+											<td>@data.StudentNumber</td>
+
+											<td>@data.Student?.FullName</td>
+											<td>@data.Student.Programme?.Department?.Name</td>
+											<td>@data.Student?.Programme?.Name</td>
+											<td>@data.Student?.Programme?.Department?.Faculty?.Name</td>
+											<td>@data.Sem</td>
+											<td>@data.AcademicYear</td>
+											<td>@data.AmountPaid</td>
+											<td>@data.AmountBilled</td>
+											<td>@data.Balance</td>
+											<td>
+													
+												@if (@data.PaymentStatus == "Over Paid")
+												{
+													<span class="badge bg-blue">@data.PaymentStatus</span>
+												}
+												else if (@data.PaymentStatus == "Owing")
+												{
+													<span class="badge bg-red">@data.PaymentStatus</span>
+												}
+												else if (@data.PaymentStatus == "Fully Paid")
+												{
+													<span class="badge bg-green">@data.PaymentStatus</span>
+												}
+													
+											</td>
+											<td>
+												<span>
+														@if (@data.PaymentStatus == "Owing")
+													{
+															<i class="material-icons text-danger edit" id="@data.StudentNumber" style="cursor: pointer" data-toggle="modal" data-target="#defaultModal">edit</i>
+													}
+													
+												</span>
+											</td>
+										</tr>
+									}
+
+								}
+								else
+								{
+									<tr>
+										<td colspan="8">Nothing found</td>
+
+									</tr>
+								}
+								</tbody>
+							</table>
+						</div>
+					}
+					else
+					{
+						<div class="alert bg-green alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							Sorry no records found...
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #END# Horizontal Layout -->
+
+</div>
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">Update Payment</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row clearfix">
+					<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+						<label for="email_address_2">Student Number</label>
+					</div>
+					<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+						<div class="form-group">
+							<div class="form-line">
+
+								<input type="text" id="studentBill" name="BilledAmount" class="form-control" readonly="readonly" placeholder="Bill" hidden="true">
+								<input type="text" id="studentNumber" name="StudentNumber" class="form-control" readonly="readonly" placeholder="Student Number">
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+						<label for="amount">Amount Paid</label>
+					</div>
+					<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+						<div class="form-group">
+							<div class="form-line">
+								<input type="number" id="amount" name="Amount" class="form-control" placeholder="Enter Amount" readonly="readonly">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+					<label for="newPayment">New Payment</label>
+				</div>
+				<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="number" id="newPayment" name="Amount" class="form-control" placeholder="Enter Amount" >
+						</div>
+					</div>
+				</div>
+			
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="updateAmount" class="btn btn-link waves-effect">Update Amount</button>
+				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/ecmascript">
+	$(document).ready(function() {
+		$("#studentBill").hide();
+			EditAmount()
+	function EditAmount() {
+		$(document).on('click', '.edit', function () {
+			var Id = $(this).attr('id');
+			//$('#updateCourse').show();
+			//$('#saveCourse').hide();
+			$.ajax({
+				url: $('#base_url').text() + '/Debtors/GetDebtor',
+				type: 'GET',
+				data: { Id: Id },
+
+				success: function (response) {
+					if (response.isSuccess) {
+						$('#studentNumber').val(response.result.studentNumber);
+						$('#amount').val(response.result.amountPaid);
+						$('#studentBill').val(response.result.amountBilled);
+						
+					}
+
+				}
+			})
+		})
+
+	}
+	
+		//Upate Year Group
+	$('#updateAmount').click(function() {
+			
+		var studentNumber = $('#studentNumber').val();
+		var studentBill = $('#studentBill').val();
+		var amount = $('#amount').val();
+		var newPayment = $('#newPayment').val();
+		
+		var amountBilled = parseInt(studentBill);
+		var totalPayment = parseInt(newPayment) + parseInt(amount);
+		var paymentStatus = "";
+		var balance = 0;
+		if (totalPayment == amountBilled)
+						{
+							paymentStatus = "Fully Paid";
+							balance = amountBilled - totalPayment;
+						}
+
+						if (totalPayment < amountBilled)
+						{
+							paymentStatus = "Owing";
+							balance = amountBilled - totalPayment;
+						}
+						else if (totalPayment > amountBilled)
+						{
+							paymentStatus = "Over Paid";
+							balance = amountBilled - totalPayment;
+						}
+
+
+		var updateDebtor = {
+			'StudentNumber': studentNumber,
+			'AmountPaid': totalPayment,
+			'AmountBilled':studentBill,
+			'PaymentStatus':paymentStatus,
+			'Balance': balance
+		}
+
+
+		$.ajax({
+			url: $('#base_url').text() + '/Debtors/UpdateDebtor',
+			contentType: "application/json",
+			type: 'PUT',
+
+			data: JSON.stringify(updateDebtor),
+
+			success: function(response) {
+				if (response.isSuccess) {
+					showNotificationSuccessMessage(response.message, "Success");
+				} else {
+					showNotificationErrorMessage("Failed", response.message, "error");
+				}
+
+			}
+
+		});
+	});
+	
+	
+	})
+</script>

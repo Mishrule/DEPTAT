@@ -10,9 +10,9 @@ using DEPTAT.Domain.Entities;
 
 namespace DEPTAT.Application.Responses
 {
-    public class StudentResponse:BaseDomainEntity
+    public class StudentResponse
     {
-        public string IndexNumber { get; set; }
+        public string StudentNumber { get; set; }
         public string FirstName { get; set; }
         public string OtherName { get; set; }
         public string LastName { get; set; }
@@ -28,5 +28,9 @@ namespace DEPTAT.Application.Responses
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string ImageUrl { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+        public string? LastModifiedBy { get; set; }
     }
 }

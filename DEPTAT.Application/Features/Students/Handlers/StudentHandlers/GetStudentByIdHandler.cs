@@ -29,7 +29,7 @@ namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
             var response = new BaseResponse<StudentResponse>();
             try
             {
-                var student = await _unitOfWork.StudentRepository.Get(id => id.Id == request.Id, includes: new List<string> { "Programme.Department.Faculty" });
+                var student = await _unitOfWork.StudentRepository.Get(id => id.StudentNumber == request.StudentNumber, includes: new List<string> { "Programme.Department.Faculty" });
                 response.Result = _mapper.Map<StudentResponse>(student);
                 response.IsSuccess = true;
             }

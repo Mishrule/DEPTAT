@@ -2,8 +2,10 @@
 using DEPTAT.Application.DTOs.AcademicYear;
 using DEPTAT.Application.DTOs.AdmittedClass;
 using DEPTAT.Application.DTOs.Course;
+using DEPTAT.Application.DTOs.Debtors;
 using DEPTAT.Application.DTOs.Department;
 using DEPTAT.Application.DTOs.Faculty;
+using DEPTAT.Application.DTOs.Otp;
 using DEPTAT.Application.DTOs.Programme;
 using DEPTAT.Application.DTOs.Student;
 using DEPTAT.Application.DTOs.YearGroup;
@@ -64,6 +66,22 @@ namespace DEPTAT.Application.Profiles
 			CreateMap<Student, CreateStudentDto>().ReverseMap();
 			CreateMap<Student, StudentResponse>().ReverseMap();
 			CreateMap<Student, UpdateStudentDto>().ReverseMap();
+
+
+			#endregion
+
+			#region Debtors
+CreateMap<Debtors, CreateDebtorsDto>().ReverseMap();
+CreateMap<Debtors, UpdateDebtorsDto>().ReverseMap();
+CreateMap<Debtors, GetDebtorsDto>().ReverseMap();
+CreateMap<Debtors, DebtorsResponse>().ReverseMap();
+
+
+			#endregion
+
+			#region OTP
+			CreateMap<Otp, OtpResponse>().ReverseMap();
+			CreateMap<Otp, OtpDto>().ReverseMap();
 
 
 			#endregion

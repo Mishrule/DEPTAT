@@ -5,11 +5,11 @@ namespace DEPTAT.Application.Features.Students.Queries.StudentQuery
 {
     public class GetStudentByIdQuery : IRequest<BaseResponse<StudentResponse>>
     {
-        public int Id { get; set; }
+        public string StudentNumber { get; set; }
 
-        public GetStudentByIdQuery(int id)
+        public GetStudentByIdQuery(string studentNumber)
         {
-            Id = id;
+            StudentNumber = studentNumber;
         }
     }
 }

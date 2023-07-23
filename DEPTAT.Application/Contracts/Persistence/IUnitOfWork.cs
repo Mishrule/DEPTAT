@@ -16,6 +16,8 @@ namespace DEPTAT.Application.Contracts.Persistence
         IAdmittedClassRepository AdmittedClassRepository { get; }
         IAcademicYearRepository AcademicYearRepository { get; }
         IStudentRepository StudentRepository { get; }
+        IDebtorRepository DebtorRepository { get; }
+        IOtpRepository OtpRepository { get; }
         Task<bool> Save();
     }
 }

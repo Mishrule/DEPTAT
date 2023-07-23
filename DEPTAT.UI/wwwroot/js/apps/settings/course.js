@@ -82,17 +82,17 @@
 
 			data: JSON.stringify(updateCourse),
 
-			success: function (response) {
+			success: function(response) {
 				if (response.isSuccess) {
 					showNotificationSuccessMessage(response.message, "Success");
 				} else {
 					showNotificationErrorMessage("Failed", response.message, "error");
 				}
-				
+
 			}
-			
-		})
-	})
+
+		});
+	});
 
 	//Delect Course
 	DeleteCourse();

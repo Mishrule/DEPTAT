@@ -35,7 +35,7 @@ namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
                 }
                 else
                 {
-                    if (await _unitOfWork.StudentRepository.Exists(n => n.IndexNumber == request.CreateStudentDto.IndexNumber))
+                    if (await _unitOfWork.StudentRepository.Exists(n => n.StudentNumber == request.CreateStudentDto.StudentNumber))
                     {
                         response.IsSuccess = false;
                         response.Message = "Student already Exist";

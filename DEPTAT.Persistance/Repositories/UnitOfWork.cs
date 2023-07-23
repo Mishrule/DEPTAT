@@ -25,6 +25,7 @@ namespace DEPTAT.Persistence.Repositories
         private IStudentRepository _studentRepository;
         private IDebtorRepository _debtorRepository;
         private IOtpRepository _otpRepository;
+        private IAttendanceRepository _attendanceRepository;
 
 
 
@@ -44,6 +45,7 @@ namespace DEPTAT.Persistence.Repositories
         public IStudentRepository StudentRepository => _studentRepository ??= new StudentRepository(_context);
         public IDebtorRepository DebtorRepository => _debtorRepository ??= new DebtorRepository(_context);
         public IOtpRepository OtpRepository => _otpRepository ??= new OtpRepository(_context);
+        public IAttendanceRepository AttendanceRepository => _attendanceRepository ??= new AttendanceRepository(_context);
 
         public void Dispose()
         {

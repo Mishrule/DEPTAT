@@ -1,5 +1,6 @@
 using DEPTAT.Application;
 using DEPTAT.Persistence;
+using Microsoft.AspNetCore.Identity;
 using OfficeOpenXml;
 
 namespace DEPTAT.UI
@@ -49,6 +50,8 @@ namespace DEPTAT.UI
             // Register your persistence services here
             services.ConfigurePersistenceServices(configuration);
             services.ConfigureApplicationServices();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
+
 
             // Additional services can be registered here if needed
             services.AddControllersWithViews();

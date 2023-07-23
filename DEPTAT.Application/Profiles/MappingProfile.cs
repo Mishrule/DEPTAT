@@ -4,6 +4,7 @@ using DEPTAT.Application.DTOs.AdmittedClass;
 using DEPTAT.Application.DTOs.Course;
 using DEPTAT.Application.DTOs.Debtors;
 using DEPTAT.Application.DTOs.Department;
+using DEPTAT.Application.DTOs.Examination;
 using DEPTAT.Application.DTOs.Faculty;
 using DEPTAT.Application.DTOs.Otp;
 using DEPTAT.Application.DTOs.Programme;
@@ -82,6 +83,14 @@ CreateMap<Debtors, DebtorsResponse>().ReverseMap();
 			#region OTP
 			CreateMap<Otp, OtpResponse>().ReverseMap();
 			CreateMap<Otp, OtpDto>().ReverseMap();
+
+
+			#endregion
+
+			#region Attendance
+			CreateMap<Attendance, AttendanceResponse>().ReverseMap();
+			CreateMap<Attendance, GetAttendanceDto>().ReverseMap();
+			CreateMap<Attendance, CreateAttendanceDto>().ReverseMap();
 
 
 			#endregion

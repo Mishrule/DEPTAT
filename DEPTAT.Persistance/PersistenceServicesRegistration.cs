@@ -37,6 +37,7 @@ namespace DEPTAT.Persistence
             services.AddScoped<IDebtorRepository, DebtorRepository>();
             services.AddScoped<ILoadExcelToDb<DebtorsResponse>, LoadExcelToDb>();
             services.AddScoped<IOtpRepository, OtpRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
             return services;
         }
     }

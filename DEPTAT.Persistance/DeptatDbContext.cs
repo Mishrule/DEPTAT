@@ -30,6 +30,7 @@ namespace DEPTAT.Persistence
         public DbSet<Student> Students { get; set; }
         public DbSet<Debtors> Debtors { get; set; }
         public DbSet<Otp> Otps { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
 
 
 

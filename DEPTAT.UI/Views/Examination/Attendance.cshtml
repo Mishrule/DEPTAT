@@ -1,6 +1,7 @@
 ﻿@*@model IEnumerable<DEPTAT.Application.Responses.DebtorsResponse>*@
 @{
 	var programmeList = ViewBag.ProgrammeList as List<ProgrammeResponse>;
+	var academicYearList = ViewBag.AcademicYearList as List<AcademicYearResponse>;
 }
 <div class="container-fluid">
 
@@ -15,16 +16,15 @@
 					<div align="center">
 					</div>
 					<ul class="header-dropdown m-r--5">
-						@*<li class="dropdown">
+						<li class="dropdown">
 						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						<i class="material-icons">more_vert</i>
 						</a>
 						<ul class="dropdown-menu pull-right">
-						<li><a href="javascript:void(0);">Add Data</a></li>
-						<li><a href="~/uploads/template/DebtTemplate.xlsx">Download Template</a></li>
-						<li><a href="javascript:void(0);">Something else here</a></li>
+						<li><a asp-controller="Examination" asp-action="AttendanceList">Attendance List</a></li>
+						
 						</ul>
-						</li>*@
+						</li>
 					</ul>
 				</div>
 				<div class="body">
@@ -65,10 +65,35 @@
 
 				</div>
 				<div class="body">
+					<div class="row">
+						<div class="col-md-12">
+							<label>Settings</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<label>Semester</label>
+							<select class="form-control show-tick" id="semesterId" name="Semester">
+								<option value="0">-- Please select --</option>
+									<option value="1">Semester One</option>
+									<option value="e">Semester Two</option>
+							</select>
+						</div>
+						<div class="col-sm-6">
+							<label>Academic Year</label>
+							<select class="form-control show-tick" id="academicYear" name="AcademicYear">
+								<option value="0">-- Please select --</option>
+								@foreach (var academicYear in academicYearList)
+								{
+									<option value="@academicYear.Id">@academicYear.Name</option>
+								}
+							</select>
+						</div>
+					</div>
 					<div id="showData"></div>
-						
-					
-					
+
+
+
 				</div>
 			</div>
 		</div>
@@ -78,96 +103,15 @@
 </div>
 
 
-@*<script type="text/ecmascript">
-	$(document).ready(function() {
-		
-		$('#programmeId').change(function(){
-		  var programme = $("#programmeId").val();
-		  
-		  
-		  var output =``;
-		  
-
-		  $.ajax({
-				url: $('#base_url').text() + '/Examination/GetStudentByProgramme',
-			contentType: "application/json",
-			type: 'GET',
-
-			//data: JSON.stringify(updateDebtor),
-				data: {ProgrammeName: programme},
-			success: function(response) {
-					console.log(response.result);
-				if (response.isSuccess) {
-					if(response.result == null){
-						
-						output +=`
-
-	
-									<div class="table-responsive">
-										<table class="table table-bordered table-striped table-hover dataTable js-exportable">
-											<thead>
-												<tr>
-
-
-													<th>Student Number</th>
-													<th>FullName</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-								`;
-								$.each(response.result, function(index, element) {
-								  // Code to be executed for each element
-									  output +=`
-											<tr>
-												<td>${element.StudentNumber}</td>
-														<td>${element.fullName}</td>
-														<td>
-																			<span>
-																					<i class="material-icons text-success update" id="${element.StudentNumber}" style="cursor: pointer">edit</i>
-																					<i class="material-icons text-primary detail" id="${element.StudentNumber}" style="cursor: pointer">remove_red_eye</i>
-
-																			</span>
-																		</td>
-											</tr>
-									  
-									  `;
-								});
-																
-								
-						}
-
-				
-						
-						
-					
-				} else {
-					output +=`
-						<div class="alert bg-green alert-dismissible" role="alert">
-											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											Sorry no records found...
-										</div>
-					
-					`;
-				}
-				$("#showData").html(output);
-			}
-
-		});
-	});
-
-		
-});
-		
-
-</script>*@
 
 
 
 <script type="text/ecmascript">
 	$(document).ready(function () {
+		
 
 		$('#programmeId').change(function () {
+			$(".image-url").hide();
 			var programme = $("#programmeId").val();
 			var output = "";
 
@@ -181,37 +125,20 @@
 					if (response.isSuccess) {
 						if (response.result && response.result.length > 0) {
 							output += `
-								<div class="table-responsive">
-									<table class="table table-bordered table-striped table-hover dataTable js-exportable">
-										<thead>
-											<tr>
-												<th>Student Number</th>
-												<th>FullName</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
+								<div class="list-group">
 							`;
 
 							$.each(response.result, function (index, element) {
 								output += `
-									<tr>
-											<td>${element.studentNumber}</td>
-										<td>${element.fullName}</td>
-										<td>
-											<span>
-												<i class="material-icons text-success update" id="${element.studentNumber}" style="cursor: pointer">edit</i>
-												<i class="material-icons text-primary detail" id="${element.studentNumber}" style="cursor: pointer">remove_red_eye</i>
-											</span>
-										</td>
-									</tr>
+									
+									<button type="button" id="${element.studentNumber}" class="list-group-item waves-effect edit"><span class="text-primary" data-toggle="modal" data-target="#smallModal">
+									${element.studentNumber}</span> - <span>${element.fullName}</span> <span class="image-url" hidden>${element.imageUrl}</span>
+									</button>
 								`;
 							});
 
 							output += `
-									</tbody>
-								</table>
-							</div>
+									</div>
 							`;
 						} else {
 							output += `
@@ -244,6 +171,147 @@
 				}
 			});
 		});
+		
+		
+		//Put student to Modal
+		$(document).on('click', '.edit', function(){
+			var studentNumber = $(this).attr('id');
+				var programmeId = $('#programmeId').val();
+				var baseUrl = $('#base_url').text();
+				//var semesterId = $('#semesterId').val();
+				//var academicYear = $('#academicYear').val();
+				 var imageUrl = $(this).find(".image-url").text();
+				 $("#studentImage").html(`<img src="${baseUrl}/uploads/${imageUrl}" width="100%" height="100%" />`);
+
+				window.academicYearToDb = $("#attendenceAcademicYear").text($('#academicYear').find('option:selected').text());
+				window.academicYearToDb = $('#academicYear').val();
+				
+				$("#attendenceSemester").text($('#semesterId').find('option:selected').text());
+				window.semesterToDb = $('#semesterId').val();
+				
+				$("#attendenceStudentNumber").text(studentNumber);
+		
+		})
+		//Validate OTP
+		$(document).on('click','#validateOTP',function(){
+				var otpCode = $('#otpCode').val();
+				var studentNumber = $('#attendenceStudentNumber').text();
+
+				$.ajax({
+				url: $('#base_url').text() + '/Examination/ValidateOTP',
+				type: 'json',
+				type: 'GET',
+				data: { studentNumber,  otpCode},
+				success: function (response) {
+					console.log(response.result);
+					if (response.isSuccess) {
+						$("#otp-error").text(response.message);
+						$("#otp-error").addClass("text-success");
+					}else{
+						$("#otp-error").text(response.message);
+						$("#otp-error").addClass("error");
+					}
+				}
+			});
+		});
+		
+		//Save Attendance
+		$(document).on('click','#saveAttance',function(){
+			var validate = $('#otp-error').text();
+			if(validate == "OTP is Valid"){
+					
+					var createAttendance = {
+							"StudentNumber":$("#attendenceStudentNumber").text(),
+							"AnswerBookSerialNumber": $("#answerBooklet").val(),
+							"Semester": window.semesterToDb,
+							"CourseCode": $("#courseCode").val(),
+						//	"AcademicYear": window.academicYearToDb,
+							"AcademicYear": $('#attendenceAcademicYear').text(),
+							"OtpCode":$("#otpCode").val()
+
+					};
+					console.log(createAttendance);
+					$.ajax({
+			url: $('#base_url').text() + '/Examination/TakeAttendance',
+			//contentType: "application/json",
+			type: 'POST',
+
+			//data: JSON.stringify(createAttendance),
+			data: createAttendance,
+
+			success: function (response) {
+				if (response.isSuccess) {
+					showNotificationSuccessMessage(response.message, "Success");
+					//location.reload();
+				} else {
+					showNotificationErrorMessage("Failed", response.message, "error");
+					//location.reload();
+				}
+
+			}
+		})
+
+			}else if(validate == "INVALID OTP"){
+				showNotificationErrorMessage("Failed", "OTP is Invalid. You can't Proceed", "error");
+			}else{
+				showNotificationErrorMessage("Failed", "Please Click validate OTP before you proceed", "error");
+				}
+		});
 
 	});
 </script>
+
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="smallModalLabel">Take Attendance</h4>
+			</div>
+			<div class="modal-body">
+				<div class="thumbnail">
+					<div id="studentImage"></div>
+					<div class="caption">
+						<h3>StudentNumber: <span id="attendenceStudentNumber"></span></h3>
+						<p>
+							<div class="form-group form-float">
+								<div class="form-line">
+									<input type="text" id="courseCode" class="form-control">
+									<label class="form-label">Course Code</label>
+								</div>
+							</div>
+							<div class="form-group form-float">
+								<div class="form-line">
+									<input type="text" id="answerBooklet" class="form-control">
+									<label class="form-label">Answer Booklet Serial No.:</label>
+								</div>
+							</div>
+						</p>
+						<p>
+							Semester: <span id="attendenceSemester"></span>
+						</p>
+						<p>
+							AcademicYear: <span id="attendenceAcademicYear"></span>
+						</p>
+						<p>
+							<div class="form-group form-float">
+								<div class="form-line">
+									<input type="text" id="otpCode" class="form-control">
+									<label class="form-label">OTP Code</label>
+								</div>
+								<label id="otp-error"></label>
+							</div>
+						</p>
+						<p>
+							<button id="validateOTP" class="btn btn-primary waves-effect btn-block" role="button">Validate OTP</button>
+						</p>
+					</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="saveAttance" class="btn btn-link waves-effect">SAVE CHANGES</button>
+				<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+			</div>
+		</div>
+	</div>
+</div>

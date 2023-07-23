@@ -9,6 +9,7 @@
   
    <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,9 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DEPTAT.Application\DEPTAT.Application.csproj" />
     <ProjectReference Include="..\DEPTAT.Domain\DEPTAT.Domain.csproj" />
-  </ItemGroup>  
-  <ItemGroup>
-    <Folder Include="Configurations\" />
   </ItemGroup>
 
 </Project>

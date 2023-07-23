@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using MediatR;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DEPTAT.Application

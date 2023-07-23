@@ -35,6 +35,7 @@ namespace DEPTAT.UI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -50,7 +51,8 @@ namespace DEPTAT.UI
             // Register your persistence services here
             services.ConfigurePersistenceServices(configuration);
             services.ConfigureApplicationServices();
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
 
 
             // Additional services can be registered here if needed

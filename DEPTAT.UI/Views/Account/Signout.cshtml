@@ -1,0 +1,15 @@
+﻿<div style="text-align: center; background-color: #fff; border-radius: 5px; padding: 30px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <div style="font-size: 80px; color: #e74c3c; margin-bottom: 20px;"><i class="material-icons" style="font-size: larger">power_settings_new</i></div>
+    <div style="font-size: 24px; color: #333; margin-bottom: 20px;">You are about to sign out<hr/> Click to Signout</div>
+    <div style="display: flex; justify-content: center;">
+        <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: inline;">
+            <input type="hidden" name="anti-forgery-token" value="your-anti-forgery-token">
+            <button type="submit" style="background-color: #e74c3c; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                <i style="font-size: 18px; vertical-align: middle;" class="material-icons">power</i>
+                <span style="vertical-align: middle; margin-left: 5px;">Sign Out</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+            

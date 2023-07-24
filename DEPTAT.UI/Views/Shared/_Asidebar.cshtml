@@ -282,7 +282,7 @@
                 <a asp-controller="Account" asp-action="Register">Create Users</a>
             </li>
             <li>
-                <a href="pages/tables/jquery-datatable.html">Manage Account</a>
+                <a asp-controller="Account" asp-action="GetUsers" >Manage Account</a>
             </li>
             <li>
                 <a href="pages/tables/editable-table.html">Roles</a>
@@ -442,10 +442,13 @@
     </li>
     *@
     <li>
-        <a href="pages/helper-classes.html">
+        <a asp-controller="Account" asp-action="Signout">
             <i class="material-icons">settings_power</i>
             <span>Sign Out</span>
         </a>
+    </li>
+    <li>
+        
     </li>
     </ul>
     </div>

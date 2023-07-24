@@ -1,6 +1,9 @@
 using DEPTAT.Application;
+using DEPTAT.Application.Profiles;
 using DEPTAT.Persistence;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using OfficeOpenXml;
 
 namespace DEPTAT.UI
@@ -40,6 +43,7 @@ namespace DEPTAT.UI
 
             app.MapControllerRoute(
                 name: "default",
+               // pattern: "{controller=Account}/{action=Login}/{id?}");
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
@@ -47,12 +51,17 @@ namespace DEPTAT.UI
 
         private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<DeptatDbContext>(options =>
+                options.UseSqlServer(
+                    configuration.GetConnectionString("DefaultConnection")));
+
             services.AddHttpContextAccessor();
             // Register your persistence services here
             services.ConfigurePersistenceServices(configuration);
             services.ConfigureApplicationServices();
-            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
+            
 
 
             // Additional services can be registered here if needed

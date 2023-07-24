@@ -1,5 +1,67 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using DEPTAT.Application.Constants
+@model DEPTAT.Application.Profiles.ApplicationUser
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    UPDATE USER
+                </h2>
+                
+            </div>
+            <div class="body">
+                <form asp-controller="Account" asp-action="Edit" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    Message: <span>@TempData[SD.Success]</span>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input asp-for="FirstName" class="form-control" placeholder="First name" autofocus>
+                        </div>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input asp-for="Othername" class="form-control" placeholder="Othername" autofocus>
+                        </div>
+                        <span asp-validation-for="Othername" class="text-danger"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input asp-for="LastName" class="form-control" placeholder="Lastname" autofocus>
+                        </div>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            <input asp-for="Email" class="form-control" placeholder="Email" autofocus>
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RoleId"></label>
+                        <select asp-for="RoleId" asp-items="@Model.RoleList" class="form-control">
+                            <option disabled selected>--Select Role--</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-block btn-lg bg-pink waves-effect">SIGN UP</button>
+
+                    
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

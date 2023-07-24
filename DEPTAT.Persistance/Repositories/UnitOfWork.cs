@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DEPTAT.Application.Constants;
+using DEPTAT.Application.Profiles;
 using DEPTAT.Persistance.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace DEPTAT.Persistence.Repositories
 {
@@ -55,13 +57,13 @@ namespace DEPTAT.Persistence.Repositories
 
         public async Task<bool> Save()
         {
-            var username = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
+        
 
-          var save =  await _context.SaveChangesAsync();
+            var save =  await _context.SaveChangesAsync();
           return save > 0;
         }
 
-        
 
     }
 }

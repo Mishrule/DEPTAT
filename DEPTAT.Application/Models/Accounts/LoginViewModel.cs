@@ -10,17 +10,19 @@ namespace DEPTAT.Application.Models.Accounts
 {
 	public class LoginViewModel
 	{
-		[Required]
+		[Required(ErrorMessage = "Username is required.")]
 		public string Username { get; set; }
-		
 
-		[Required]
+		[Required(ErrorMessage = "Password is required.")]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
 		[Display(Name = "Remember me?")]
 		public bool RememberMe { get; set; }
-		// The returnUrl property to store the URL to redirect the user after login
-		public string ReturnUrl => "~/";
+
+		// Property to store the returnUrl
+		[Required] public string? ReturnUrl { get; set; } = "~/";
+
+
 	}
 }

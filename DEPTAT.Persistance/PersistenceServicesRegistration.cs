@@ -18,9 +18,7 @@ namespace DEPTAT.Persistence
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<DeptatDbContext>(options =>
-                options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection")));
+           
 
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

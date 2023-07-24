@@ -1,5 +1,89 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<DEPTAT.Application.Profiles.ApplicationUser>
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Edit User
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a asp-controller="Account" asp-action="Register">Add User</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                @if (Model.Count() != 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Roles</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Any())
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.UserName
+                                            </td>
+                                            <td>
+                                                @item.Email
+                                            </td>
+                                            <td>
+                                                @item.Role
+                                            </td>
+                                            <td>
+                                                <div class="d-flex justify-content-center">
+                                                    <form asp-action="Delete" asp-route-userId="@item.Id">
+                                                        <a asp-action="Edit" asp-route-userId="@item.Id" class="btn btn-info text-white" style="cursor: pointer">
+                                                            <i class="material-icons">mode_edit</i>
+                                                        </a>
+
+                                                        <a type="submit" onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger">
+                                                            <i class="material-icons">delete</i>
+                                                        </a>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="3">Nothing found</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert bg-green alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        Sorry no records found...
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

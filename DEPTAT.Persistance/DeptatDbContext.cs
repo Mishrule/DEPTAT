@@ -9,15 +9,39 @@ using DEPTAT.Domain.Entities;
 using DEPTAT.Persistance.Configurations.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using DEPTAT.Domain.Common;
 
 namespace DEPTAT.Persistence
 {
     public class DeptatDbContext : IdentityDbContext
+    //public class DeptatDbContext : AuditableDbContext
     {
         public DeptatDbContext(DbContextOptions<DeptatDbContext> options) : base(options) { }
 
+        //public virtual async Task<int> SaveChangesAsync(string username = "SYSTEM")
+        //{
 
-        
+
+        //    foreach (var entry in base.ChangeTracker.Entries<BaseDomainEntity>()
+        //                 .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
+        //    {
+        //        entry.Entity.LastModifiedDate = DateTime.Now;
+        //        entry.Entity.LastModifiedBy = username;
+
+        //        if (entry.State == EntityState.Added)
+        //        {
+        //            entry.Entity.DateCreated = DateTime.Now;
+        //            entry.Entity.CreatedBy = username;
+        //        }
+        //    }
+
+        //    var result = await base.SaveChangesAsync();
+
+        //    return result;
+
+
+        //}
+
         public DbSet<YearGroup> YearGroups { get; set; }
         public DbSet<AcademicYear> AcademicYears { get; set; }
         public DbSet<AdmittedClass> AdmittedClasses { get; set; }
@@ -35,7 +59,7 @@ namespace DEPTAT.Persistence
         {
 
 
-            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(DeptatDbContext).Assembly);
+            //builder.ApplyConfigurationsFromAssembly(typeof(DeptatDbContext).Assembly);
             builder.ApplyConfiguration(new RoleSeedConfiguration());
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
             builder.ApplyConfiguration(new UserRoleSeedingConfiguration());

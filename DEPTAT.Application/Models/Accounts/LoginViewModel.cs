@@ -20,5 +20,7 @@ namespace DEPTAT.Application.Models.Accounts
 
 		[Display(Name = "Remember me?")]
 		public bool RememberMe { get; set; }
+		// The returnUrl property to store the URL to redirect the user after login
+		public string ReturnUrl => "~/";
 	}
 }

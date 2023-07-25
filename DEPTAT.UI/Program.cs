@@ -60,7 +60,7 @@ namespace DEPTAT.UI
             services.ConfigurePersistenceServices(configuration);
             services.ConfigureApplicationServices();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<DeptatDbContext>().AddDefaultTokenProviders();
             
 
 

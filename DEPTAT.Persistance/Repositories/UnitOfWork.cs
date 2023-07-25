@@ -17,6 +17,7 @@ namespace DEPTAT.Persistence.Repositories
 
         private readonly DeptatDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<IdentityUser> _userManager;
         private IYearGroupRepository? _yearGroupRepository;
         private IAcademicYearRepository _academicYearRepository;
         private IAdmittedClassRepository _admittedClassRepository;
@@ -31,10 +32,11 @@ namespace DEPTAT.Persistence.Repositories
 
 
 
-        public UnitOfWork(DeptatDbContext context, IHttpContextAccessor httpContextAccessor)
+        public UnitOfWork(DeptatDbContext context, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
+            _userManager = userManager;
         }
 
         public IYearGroupRepository YearGroupRepository => _yearGroupRepository ??= new YearGroupRepository(_context);
@@ -57,10 +59,9 @@ namespace DEPTAT.Persistence.Repositories
 
         public async Task<bool> Save()
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
-        
+            var userId = _httpContextAccessor.HttpContext.User.Identity.Name;
 
-            var save =  await _context.SaveChangesAsync();
+            var save =  await _context.SaveChangesAsync(userId);
           return save > 0;
         }
 

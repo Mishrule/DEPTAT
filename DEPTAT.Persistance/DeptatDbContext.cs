@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DEPTAT.Persistence
 {
-    public class DeptatDbContext : IdentityDbContext
+    public class DeptatDbContext : AuditableDbContext
     {
         public DeptatDbContext(DbContextOptions<DeptatDbContext> options) : base(options) { }
 

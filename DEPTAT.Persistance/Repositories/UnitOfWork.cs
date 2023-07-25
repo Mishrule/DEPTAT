@@ -55,9 +55,9 @@ namespace DEPTAT.Persistence.Repositories
 
         public async Task<bool> Save()
         {
-            var username = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(CustomClaimTypes.Uid)?.Value;
 
-          var save =  await _context.SaveChangesAsync();
+          var save =  await _context.SaveChangesAsync(userId);
           return save > 0;
         }
 

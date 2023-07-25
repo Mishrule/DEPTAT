@@ -242,5 +242,30 @@ namespace DEPTAT.UI.Controllers
 			return View(user);
 		}
 
+
+		[HttpGet]
+		public IActionResult RoleList()
+		{
+			var userList = _db.Users.ToList();
+			var userRoles = _db.UserRoles.ToList();
+			var roles = _db.Roles.ToList();
+
+			foreach (var user in userList)
+			{
+				var userRole = userRoles.FirstOrDefault(ur => ur.UserId == user.Id);
+				if (userRole == null)
+				{
+					user.Role = "None";
+				}
+				else
+				{
+					var role = roles.FirstOrDefault(r => r.Id == userRole.RoleId);
+					user.Role = role != null ? role.Name : "None";
+				}
+			}
+
+			return View(userList);
+		}
+
 	}
 }

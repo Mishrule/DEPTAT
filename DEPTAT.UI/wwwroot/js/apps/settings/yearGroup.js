@@ -129,3 +129,13 @@
 	}
 
 })
+
+//if (validateFields('#agency', "#validateAgency")) {
+
+//} else if (validateFields('#contact', "#validateContact")) {
+
+//} else if (validateFields('#location', "#validateLocation")) {
+
+//} else {
+//	AddAgency();
+//}

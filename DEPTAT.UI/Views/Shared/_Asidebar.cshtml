@@ -60,12 +60,7 @@
             <li>
                 <a asp-controller="Examination" asp-action="Index">Check Status</a>
             </li>
-            <li>
-                <a asp-controller="Examination" asp-action="ClockStudent">Clock Attendance</a>
-            </li>
-            <li>
-                <a asp-controller="Examination" asp-action="ViewOTP">View OTPs</a>
-            </li>
+           
 
         </ul>
     </li>
@@ -77,6 +72,12 @@
         <ul class="ml-menu">
             <li>
                 <a asp-controller="Debtors" asp-action="Index">Load Data</a>
+            </li>
+            <li>
+                <a asp-controller="Examination" asp-action="ClockStudent">Clock Attendance</a>
+            </li>
+            <li>
+                <a asp-controller="Examination" asp-action="ViewOTP">View OTPs</a>
             </li>
 
         </ul>
@@ -250,23 +251,27 @@
         </a>
         <ul class="ml-menu">
             <li>
-                <a asp-controller="Programme" asp-action="Index">Add Programmes</a>
-            </li>
-            <li>
-                <a asp-controller="Course" asp-action="Index">Add Course</a>
-            </li>
-            <li>
-                <a asp-controller="Department" asp-action="Index">Add Department</a>
-            </li>
-            <li>
-                <a asp-controller="Faculty" asp-action="Index">Add Faculty</a>
+                <a asp-controller="YearGroup" asp-action="CreateYearGroup">Year Group</a>
             </li>
             <li>
                 <a asp-controller="AcademicYear" asp-action="Index">Academic Year</a>
             </li>
             <li>
-                <a asp-controller="YearGroup" asp-action="CreateYearGroup">Year Group</a>
+                <a asp-controller="Faculty" asp-action="Index">Add Faculty</a>
             </li>
+            <li>
+                <a asp-controller="Department" asp-action="Index">Add Department</a>
+            </li>
+            <li>
+                <a asp-controller="Programme" asp-action="Index">Add Programmes</a>
+            </li>
+            <li>
+                <a asp-controller="Course" asp-action="Index">Add Course</a>
+            </li>
+           
+            
+            
+
             @* <li>
                 <a href="pages/forms/editors.html">Editors</a>
             </li>*@
@@ -282,10 +287,10 @@
                 <a asp-controller="Account" asp-action="Register">Create Users</a>
             </li>
             <li>
-                <a asp-controller="Account" asp-action="GetUsers" >Manage Account</a>
+                <a asp-controller="User" asp-action="Index" >Manage Users</a>
             </li>
             <li>
-                <a asp-controller="Account" asp-action="RoleList">Roles</a>
+                <a asp-controller="Roles" asp-action="Index">Roles</a>
             </li>
         </ul>
     </li>

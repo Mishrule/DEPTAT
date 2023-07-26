@@ -39,21 +39,25 @@ namespace DEPTAT.Application.Features.Settings.Handlers.CourseHandlers
                     response.Message = "Data already Exist";
                     
                 }
-
-                var CourseEntity = _mapper.Map<Course>(request.CreateCourseDto);
-
-                CourseEntity = await _unitOfWork.CourseRepository.Insert(CourseEntity);
-                var save = await _unitOfWork.Save();
-                if (save)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Record saved Successfully";
-                }
                 else
                 {
-                    response.Message = "Saved Failed Try again";
-                    response.IsSuccess = false;
+                    var CourseEntity = _mapper.Map<Course>(request.CreateCourseDto);
+
+                    CourseEntity = await _unitOfWork.CourseRepository.Insert(CourseEntity);
+                    var save = await _unitOfWork.Save();
+                    if (save)
+                    {
+                        response.IsSuccess = true;
+                        response.Message = "Record saved Successfully";
+                    }
+                    else
+                    {
+                        response.Message = "Saved Failed Try again";
+                        response.IsSuccess = false;
+                    }
                 }
+
+               
             }
 
             return response;

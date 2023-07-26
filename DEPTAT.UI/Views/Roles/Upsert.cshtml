@@ -1,0 +1,94 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    var title = "Create Role";
+}
+
+
+
+                            
+<div class="row clearfix">
+    <!-- Task Info -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            
+            <div class="header">
+                <h2>
+                    CREATE ROLE
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a asp-controller="Roles" asp-action="Index">Role</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="body">
+                <form method="post">
+                    @if (Model != null && !String.IsNullOrEmpty(Model.Id))
+                    {
+                        title = "Edit Role";
+                        <input asp-for="@Model.Id" hidden />
+                    }
+                    
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 form-control-label">
+                            <label asp-for="Id"></label>
+                        </div>
+                        <div class="col-lg-4 col-md-5 col-sm-4 col-xs-4">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Id" readonly class="form-control" />
+                                    <label class="form-label">Role Id</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 form-control-label">
+                            <label for="file">Role Name</label>
+                        </div>
+                        <div class="col-lg-4 col-md-5 col-sm-4 col-xs-4">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Name" class="form-control" id="studentNumber" name="StudentNumber" required="" aria-required="true">
+                                    <label class="form-label">Role Name</label>
+                                </div>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-6">
+                                   
+                              
+                            </div>
+                            <div class="col-lg-6">
+                                @if (Model != null && !String.IsNullOrEmpty(Model.Id))
+                                {
+                                    //update
+
+                                    <input type="submit" class="btn btn-info w-100" value="Update" />
+                                }
+                                else
+                                {
+                                    //create
+                                    <input type="submit" class="btn btn-primary w-100" value="Create" />
+                                }
+                                <a asp-action="Index" class="btn btn-success w-100">Back</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Task Info -->
+
+</div>

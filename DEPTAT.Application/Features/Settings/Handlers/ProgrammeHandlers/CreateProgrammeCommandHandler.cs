@@ -39,21 +39,25 @@ namespace DEPTAT.Application.Features.Settings.Handlers.ProgrammeHandlers
                     response.Message = "Data already Exist";
                     
                 }
-
-                var programmeEntity = _mapper.Map<Programme>(request.CreateProgrammeDto);
-
-                programmeEntity = await _unitOfWork.ProgrammeRepository.Insert(programmeEntity);
-                var save = await _unitOfWork.Save();
-                if (save)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Record saved Successfully";
-                }
                 else
                 {
-                    response.Message = "Save Failed Try again";
-                    response.IsSuccess = false;
+                    var programmeEntity = _mapper.Map<Programme>(request.CreateProgrammeDto);
+
+                    programmeEntity = await _unitOfWork.ProgrammeRepository.Insert(programmeEntity);
+                    var save = await _unitOfWork.Save();
+                    if (save)
+                    {
+                        response.IsSuccess = true;
+                        response.Message = "Record saved Successfully";
+                    }
+                    else
+                    {
+                        response.Message = "Save Failed Try again";
+                        response.IsSuccess = false;
+                    }
                 }
+
+                
             }
 
             return response;

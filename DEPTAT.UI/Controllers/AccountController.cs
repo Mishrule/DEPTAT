@@ -38,9 +38,44 @@ namespace DEPTAT.UI.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Register(string? returnurl = null)
 		{
+			if (!await _roleManager.RoleExistsAsync("Admin"))
+			{
+				//create roles
+				await _roleManager.CreateAsync(new IdentityRole("Admin"));
+				await _roleManager.CreateAsync(new IdentityRole("Invigilator"));
+				await _roleManager.CreateAsync(new IdentityRole("Account"));
+				await _roleManager.CreateAsync(new IdentityRole("Examiner"));
+			}
 
-			//ViewData["ReturnUrl"] = returnurl;
-			RegisterViewModel registerViewModel = new RegisterViewModel();
+			List<SelectListItem> listItems = new List<SelectListItem>();
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Admin",
+				Text = "Admin"
+			});
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Invigilator",
+				Text = "Invigilator"
+			});
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Examiner",
+				Text = "Examiner"
+			});
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Account",
+				Text = "Account"
+			});
+
+
+
+			ViewData["ReturnUrl"] = returnurl;
+			RegisterViewModel registerViewModel = new RegisterViewModel()
+			{
+				RoleList = listItems
+			};
 			return View(registerViewModel);
 		}
 
@@ -50,7 +85,7 @@ namespace DEPTAT.UI.Controllers
 		{
 
 			ViewData["ReturnUrl"] = returnurl;
-			returnurl = returnurl ?? Url.Content("Home/Dashboard");
+			returnurl = returnurl ?? Url.Content("~/Home/Dashboard");
 			if (ModelState.IsValid)
 			{
 				var user = new ApplicationUser
@@ -72,6 +107,28 @@ namespace DEPTAT.UI.Controllers
 				AddErrors(result);
 			}
 
+			List<SelectListItem> listItems = new List<SelectListItem>();
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Admin",
+				Text = "Admin"
+			});
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Invigilator",
+				Text = "Invigilator"
+			});
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Examiner",
+				Text = "Examiner"
+			});
+			listItems.Add(new SelectListItem()
+			{
+				Value = "Account",
+				Text = "Account"
+			});
+			model.RoleList = listItems;
 
 			return View(model);
 		}
@@ -203,69 +260,148 @@ namespace DEPTAT.UI.Controllers
 			return View(objFromDb);
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		//[Authorize(Roles = "Admin")]
-		public async Task<IActionResult> Edit(ApplicationUser user)
-		{
-			if (ModelState.IsValid)
-			{
-				var objFromDb = _db.Users.FirstOrDefault(u => u.Id == user.Id);
-				if (objFromDb == null)
-				{
-					return NotFound();
-				}
-				var userRole = _db.UserRoles.FirstOrDefault(u => u.UserId == objFromDb.Id);
-				if (userRole != null)
-				{
-					var previousRoleName = _db.Roles.Where(u => u.Id == userRole.RoleId).Select(e => e.Name).FirstOrDefault();
-					//removing the old role
-					await _userManager.RemoveFromRoleAsync(objFromDb, previousRoleName);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        ////[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> Edit(ApplicationUser user)
+        //{
+        //	if (ModelState.IsValid)
+        //	{
+        //		var objFromDb = _db.Users.FirstOrDefault(u => u.Id == user.Id);
+        //		if (objFromDb == null)
+        //		{
+        //			return NotFound();
+        //		}
+        //		var userRole = _db.UserRoles.FirstOrDefault(u => u.UserId == objFromDb.Id);
+        //		if (userRole != null)
+        //		{
+        //			var previousRoleName = _db.Roles.Where(u => u.Id == userRole.RoleId).Select(e => e.Name).FirstOrDefault();
+        //			//removing the old role
+        //			await _userManager.RemoveFromRoleAsync(objFromDb, previousRoleName);
 
-				}
+        //		}
 
-				//add new role
-				await _userManager.AddToRoleAsync(objFromDb, _db.Roles.FirstOrDefault(u => u.Id == user.RoleId).Name);
-				objFromDb.UserName = user.UserName;
-				_db.SaveChanges();
-				TempData[SD.Success] = "User has been edited successfully.";
-				return RedirectToAction(nameof(GetUsers));
-				// return Ok();
-			}
-
-
-			user.RoleList = _db.Roles.Select(u => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
-			{
-				Text = u.Name,
-				Value = u.Id
-			});
-			return View(user);
-		}
+        //		//add new role
+        //		await _userManager.AddToRoleAsync(objFromDb, _db.Roles.FirstOrDefault(u => u.Id == user.RoleId).Name);
+        //		objFromDb.UserName = user.UserName;
+        //		_db.SaveChanges();
+        //		TempData[SD.Success] = "User has been edited successfully.";
+        //		return RedirectToAction(nameof(GetUsers));
+        //		// return Ok();
+        //	}
 
 
-		[HttpGet]
-		public IActionResult RoleList()
-		{
-			var userList = _db.Users.ToList();
-			var userRoles = _db.UserRoles.ToList();
-			var roles = _db.Roles.ToList();
+        //	user.RoleList = _db.Roles.Select(u => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+        //	{
+        //		Text = u.Name,
+        //		Value = u.Id
+        //	});
+        //	return View(user);
+        //}
 
-			foreach (var user in userList)
-			{
-				var userRole = userRoles.FirstOrDefault(ur => ur.UserId == user.Id);
-				if (userRole == null)
-				{
-					user.Role = "None";
-				}
-				else
-				{
-					var role = roles.FirstOrDefault(r => r.Id == userRole.RoleId);
-					user.Role = role != null ? role.Name : "None";
-				}
-			}
 
-			return View(userList);
-		}
+        //[HttpGet]
+        //public IActionResult RoleList()
+        //{
+        //	var userList = _db.Users.ToList();
+        //	var userRoles = _db.UserRoles.ToList();
+        //	var roles = _db.Roles.ToList();
 
-	}
+        //	foreach (var user in userList)
+        //	{
+        //		var userRole = userRoles.FirstOrDefault(ur => ur.UserId == user.Id);
+        //		if (userRole == null)
+        //		{
+        //			user.Role = "None";
+        //		}
+        //		else
+        //		{
+        //			var role = roles.FirstOrDefault(r => r.Id == userRole.RoleId);
+        //			user.Role = role != null ? role.Name : "None";
+        //		}
+        //	}
+
+        //	return View(userList);
+        //}
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(ApplicationUser user)
+        //{
+        //	if (ModelState.IsValid)
+        //	{
+        //		var objFromDb = _db.Users.FirstOrDefault(u => u.Id == user.Id);
+        //		if (objFromDb == null)
+        //		{
+        //			return NotFound();
+        //		}
+        //		var userRole = _db.UserRoles.FirstOrDefault(u => u.UserId == objFromDb.Id);
+        //		if (userRole != null)
+        //		{
+        //			var previousRoleName = _db.Roles.Where(u => u.Id == userRole.RoleId).Select(e => e.Name).FirstOrDefault();
+        //			//removing the old role
+        //			await _userManager.RemoveFromRoleAsync(objFromDb, previousRoleName);
+
+        //		}
+
+        //		//add new role
+        //		await _userManager.AddToRoleAsync(objFromDb, _db.Roles.FirstOrDefault(u => u.Id == user.RoleId).Name);
+        //		objFromDb.Email = user.Email;
+        //		_db.SaveChanges();
+        //		TempData[SD.Success] = "User has been edited successfully.";
+        //		return RedirectToAction(nameof(Index));
+        //	}
+
+
+        //	user.RoleList = _db.Roles.Select(u => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+        //	{
+        //		Text = u.Name,
+        //		Value = u.Id
+        //	});
+        //	return View(user);
+        //}
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string code = null)
+        {
+	        return code == null ? View("Error") : View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+
+	        if (ModelState.IsValid)
+	        {
+		        var user = await _userManager.FindByNameAsync(model.Username);
+		        if (user == null)
+		        {
+			        return RedirectToAction("ResetPasswordConfirmation");
+		        }
+
+		        var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+		        if (result.Succeeded)
+		        {
+			        return RedirectToAction("ResetPasswordConfirmation");
+		        }
+		        AddErrors(result);
+	        }
+
+	        return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPasswordConfirmation()
+        {
+	        return View();
+        }
+
+
+    }
 }

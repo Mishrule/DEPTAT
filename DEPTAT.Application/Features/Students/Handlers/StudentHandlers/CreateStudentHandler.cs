@@ -41,21 +41,25 @@ namespace DEPTAT.Application.Features.Students.Handlers.StudentHandlers
                         response.Message = "Student already Exist";
 
                     }
-
-                    var studentEntity = _mapper.Map<Student>(request.CreateStudentDto);
-
-                    studentEntity = await _unitOfWork.StudentRepository.Insert(studentEntity);
-                    var save = await _unitOfWork.Save();
-                    if (save)
-                    {
-                        response.IsSuccess = true;
-                        response.Message = "Record saved Successfully";
-                    }
                     else
                     {
-                        response.Message = "Save Failed Try again";
-                        response.IsSuccess = false;
+                        var studentEntity = _mapper.Map<Student>(request.CreateStudentDto);
+
+                        studentEntity = await _unitOfWork.StudentRepository.Insert(studentEntity);
+                        var save = await _unitOfWork.Save();
+                        if (save)
+                        {
+                            response.IsSuccess = true;
+                            response.Message = "Record saved Successfully";
+                        }
+                        else
+                        {
+                            response.Message = "Save Failed Try again";
+                            response.IsSuccess = false;
+                        }
                     }
+
+                    
                 }
             }
             catch (Exception e)

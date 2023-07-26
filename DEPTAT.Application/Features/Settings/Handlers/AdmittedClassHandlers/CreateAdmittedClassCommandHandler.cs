@@ -39,21 +39,25 @@ namespace DEPTAT.Application.Features.Settings.Handlers.AdmittedClassHandlers
                     response.Message = "Data already Exist";
                     
                 }
-
-                var AdmittedClassEntity = _mapper.Map<AdmittedClass>(request.CreateAdmittedClassDto);
-
-                AdmittedClassEntity = await _unitOfWork.AdmittedClassRepository.Insert(AdmittedClassEntity);
-                var save = await _unitOfWork.Save();
-                if (save)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Success: Record save Successfully";
-                }
                 else
                 {
-                    response.Message = "Error: Save Failed Try again";
-                    response.IsSuccess = false;
+                    var AdmittedClassEntity = _mapper.Map<AdmittedClass>(request.CreateAdmittedClassDto);
+
+                    AdmittedClassEntity = await _unitOfWork.AdmittedClassRepository.Insert(AdmittedClassEntity);
+                    var save = await _unitOfWork.Save();
+                    if (save)
+                    {
+                        response.IsSuccess = true;
+                        response.Message = "Success: Record save Successfully";
+                    }
+                    else
+                    {
+                        response.Message = "Error: Save Failed Try again";
+                        response.IsSuccess = false;
+                    }
                 }
+
+                
             }
 
             return response;

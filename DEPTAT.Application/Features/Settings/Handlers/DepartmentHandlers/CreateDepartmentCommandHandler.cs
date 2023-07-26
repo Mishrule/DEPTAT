@@ -47,21 +47,25 @@ namespace DEPTAT.Application.Features.Settings.Handlers.YearGroupHandlers
                     response.Message = "Data already Exist";
                     
                 }
-
-                var DepartmentEntity = _mapper.Map<Department>(request.CreateDepartmentDto);
-
-                DepartmentEntity = await _unitOfWork.DepartmentRepository.Insert(DepartmentEntity);
-                var save = await _unitOfWork.Save();
-                if (save)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Record Saved";
-                }
                 else
                 {
-                    response.Message = "Error: Save Failed Try again";
-                    response.IsSuccess = false;
+                    var DepartmentEntity = _mapper.Map<Department>(request.CreateDepartmentDto);
+
+                    DepartmentEntity = await _unitOfWork.DepartmentRepository.Insert(DepartmentEntity);
+                    var save = await _unitOfWork.Save();
+                    if (save)
+                    {
+                        response.IsSuccess = true;
+                        response.Message = "Record Saved";
+                    }
+                    else
+                    {
+                        response.Message = "Error: Save Failed Try again";
+                        response.IsSuccess = false;
+                    }
                 }
+
+                
             }
 
             return response;

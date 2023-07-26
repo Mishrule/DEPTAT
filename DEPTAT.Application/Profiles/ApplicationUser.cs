@@ -26,7 +26,7 @@ namespace DEPTAT.Application.Profiles
 		[NotMapped]
 		public string Role { get; set; }
 		[NotMapped]
-		public IEnumerable<SelectListItem> RoleList { get; set; }
+		public IEnumerable<SelectListItem>? RoleList { get; set; }
 
 	}
 }

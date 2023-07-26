@@ -69,16 +69,16 @@ namespace DEPTAT.UI.Controllers
 
 
             var LastSevenOTPGen = await _mediator.Send(new GetOtpsQuery());
-            ViewBag.LastSevenOTPGen = LastSevenOTPGen.Result?.TakeLast(7);
+            ViewBag.LastSevenOTPGen = LastSevenOTPGen.Result?.TakeLast(7).ToList();
 
             var lastFiveStudentOwing = await _mediator.Send(new GetDebtorsQuery());
-            ViewBag.TotalLastOwing = lastFiveStudentOwing.Result?.TakeLast(5).Where(q => q.PaymentStatus == "Owing");
+            ViewBag.TotalLastOwing = lastFiveStudentOwing.Result?.TakeLast(5).Where(q => q.PaymentStatus == "Owing").ToList();
 
             var lastFiveStudentFullyPaid = await _mediator.Send(new GetDebtorsQuery());
-            ViewBag.TotalLastFully = lastFiveStudentFullyPaid.Result?.TakeLast(5).Where(q => q.PaymentStatus == "Fully Paid");
+            ViewBag.TotalLastFully = lastFiveStudentFullyPaid.Result?.TakeLast(5).Where(q => q.PaymentStatus == "Fully Paid").ToList();
 
             var students = await _mediator.Send(new GetStudentsQuery());
-            ViewBag.Students = students.Result.TakeLast(6).ToList();
+            ViewBag.Students = students.Result?.TakeLast(6).ToList();
 
         }
     }

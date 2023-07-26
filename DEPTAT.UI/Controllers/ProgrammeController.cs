@@ -4,10 +4,12 @@ using DEPTAT.Application.Features.Settings.Queries.DepartmentQuery;
 using DEPTAT.Application.Features.Settings.Queries.ProgrammesQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEPTAT.UI.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	public class ProgrammeController : Controller
 	{
 		private readonly IMediator _mediator;

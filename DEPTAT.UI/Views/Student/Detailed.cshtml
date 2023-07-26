@@ -8,16 +8,20 @@
                 <h2>
                     DETAILED STUDENT VIEW
                 </h2>
-                <ul class="header-dropdown m-r--5">
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">more_vert</i>
+            @if (User.IsInRole("Admin"))
+            {
+                <ul class = "header-dropdown m-r--5">
+                    <li class = "dropdown">
+                        <a href = "javascript:void(0);" class = "dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup = "true" aria-expanded = "false">
+                            <i class = "material-icons">more_vert</i>
                         </a>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a asp-controller="Student" asp-action="Register">Add Student</a></li>
+
+                        <ul class = "dropdown-menu pull-right">
+                            <li><a asp-controller = "Student" asp-action = "Register">Add Student</a></li>
                         </ul>
                     </li>
                 </ul>
+            }
             </div>
             <div class="body">
                 @if (Model.Count() != 0)
@@ -61,7 +65,7 @@
                                             <td>@data.Programme?.Department?.Name</td>
                                             <td>@data.Programme?.Department?.Faculty?.Name</td>
                                             <td>@data.YearGroup</td>
-                                            <td>@data.Level</td>
+                                            @*<td>@data.Level</td>*@
                                             <td>@data.AdmittedYear</td>
                                             <td>@data.ClassYear</td>
                                             <td>@data.CreatedBy</td>

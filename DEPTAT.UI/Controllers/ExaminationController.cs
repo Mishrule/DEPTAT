@@ -16,10 +16,12 @@ using DEPTAT.Application.Features.Settings.Queries.ProgrammesQuery;
 using DEPTAT.Application.Features.Students.Queries.StudentQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEPTAT.UI.Controllers
 {
+	[Authorize]
 	public class ExaminationController : Controller
 	{
 		private readonly IMediator _mediator;
@@ -29,17 +31,20 @@ namespace DEPTAT.UI.Controllers
 			_mediator = mediator;
 		}
 
+		[Authorize]
 		public IActionResult Index()
 		{
 			return View();
 		}
 
+		[Authorize(Roles = "Invigilator")]
 		public async Task<IActionResult> SearchStudent(string studentNumber)
 		{
 			var data = await _mediator.Send(new GetDebtorsByStudentNumberQuery(studentNumber));
 			return Ok(data);
 		}
 
+		[Authorize(Roles = "Admin, Invigilator, Examiner")]
 		public async Task<IActionResult> Attendance()
 		{
 			var programmeList = await _mediator.Send(new GetProgrammesQuery());
@@ -52,6 +57,7 @@ namespace DEPTAT.UI.Controllers
 			return View();
 		}
 
+		[Authorize(Roles = "Admin, Examiner, Invigilator")]
 		public async Task<IActionResult> GetStudentByProgramme(int ProgrammeName)
 		{
 			var studentListList = await _mediator.Send(new GetStudentByProgrammeQuery(ProgrammeName));
@@ -59,6 +65,7 @@ namespace DEPTAT.UI.Controllers
 			return Json(studentListList);
 		}
 
+		[Authorize(Roles = "Admin,Invigilator,Examiner,Account")]
 		public async Task<IActionResult> ClockStudent()
 		{
 			//var studentListList = await _mediator.Send(new GetStudentByProgrammeQuery(studentNumber));
@@ -66,6 +73,7 @@ namespace DEPTAT.UI.Controllers
 			return View();
 		}
 
+		[Authorize(Roles = "Admin,Invigilator,Examiner")]
 		[HttpPost]
 		public async Task<IActionResult> ClockAttendance([FromBody] OtpDto data)
 		{
@@ -79,18 +87,21 @@ namespace DEPTAT.UI.Controllers
 			
 		}
 
+		[Authorize(Roles = "Admin,Account,Examiner")]
 		public async Task<IActionResult> ViewOTP()
 		{
 			var otp = await _mediator.Send(new GetOtpsQuery());
 			return View(otp.Result?.OrderByDescending(o => o.Id).ToList());
 		}
 
+		[Authorize(Roles = "Admin,Invigilator,Account,Examiner")]
 		public async Task<IActionResult> ValidateOTP(string studentNumber, string otpCode)
 		{
 			var otp = await _mediator.Send(new GetValidateOTPQuery(studentNumber, otpCode));
 			return Ok(otp);
 		}
 
+		[Authorize(Roles = "Admin,Invigilator")]
 		[HttpPost]
 		public async Task<IActionResult> TakeAttendance(CreateAttendanceDto createAttendance)
 		{
@@ -102,6 +113,7 @@ namespace DEPTAT.UI.Controllers
 			return Ok(response);
 		}
 
+		[Authorize(Roles = "Admin,Invigilator,Examiner")]
 		[HttpGet]
 		public async Task<IActionResult> AttendanceList()
 		{

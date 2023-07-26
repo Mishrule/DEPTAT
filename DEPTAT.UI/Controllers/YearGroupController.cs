@@ -10,6 +10,7 @@ using DEPTAT.Application.Features.Settings.Queries.YearGroupQueries;
 
 namespace DEPTAT.UI.Controllers
 {
+	[Authorize(Roles = "Admin")]
     public class YearGroupController : Controller
     {
         private readonly IMediator _mediator;

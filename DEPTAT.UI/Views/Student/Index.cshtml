@@ -1,6 +1,8 @@
 ﻿
 @{
 	var programmeList = ViewBag.ProgrammeList as List<ProgrammeResponse>;
+	var yearGroupList = ViewBag.YearGroupList as List<YearGroupResponse>;
+	var academicYearList = ViewBag.AcademicYearList as List<AcademicYearResponse>;
 }
 
 @model DEPTAT.Application.Responses.StudentResponse
@@ -18,7 +20,7 @@
 					<h2>
 						ADD STUDENT
 					</h2>
-					<ul class="header-dropdown m-r--5">
+					@*<ul class="header-dropdown m-r--5">
 						<li class="dropdown">
 							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								<i class="material-icons">more_vert</i>
@@ -29,7 +31,7 @@
 								<li><a href="javascript:void(0);">Something else here</a></li>
 							</ul>
 						</li>
-					</ul>
+					</ul>*@
 				</div>
 				<div class="body">
 					<form class="form-horizontal" id="registerForm" method="post" enctype="multipart/form-data">
@@ -118,7 +120,7 @@
 										<option value="1">In School</option>
 										<option value="2">Rusticated</option>
 										<option value="3">Withdrawn</option>
-										<option value="4">Dismissed</option>
+										<option value="4">Repeated</option>
 										<option value="5">Complete</option>
 
 									</select>
@@ -127,7 +129,7 @@
 						</div>
 					</div>
 					
-					<div class="row clearfix">
+					@*<div class="row clearfix">
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
 							<label for="status">Level</label>
 						</div>
@@ -144,7 +146,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>*@
 					
 					
 					<div class="row clearfix">
@@ -154,8 +156,15 @@
 						<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 							<div class="form-group">
 								<div class="form-line">
-									<input type="text" id="yearGroup" name="YearGroup" class="form-control" placeholder="Enter your Year Group">
+									<input type="text"  class="form-control" placeholder="Enter your Year Group">
 								</div>
+								<select id = "yearGroup" name = "YearGroup" class = "selectpicker form-control">
+									<option>Select Year Group</option>
+									@foreach (var yearGroup in yearGroupList)
+									{
+										<option value = "@yearGroup.Id">@yearGroup.Name</option>
+									}
+								</select>
 							</div>
 						</div>
 					</div>
@@ -168,8 +177,15 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="academicYear" name="AcademicYear" class="form-control" placeholder="Enter your Academic Year">
+										<input type="text"  class="form-control" placeholder="Enter your Academic Year">
 									</div>
+									<select id = "academicYear" name = "AcademicYear" class = "selectpicker form-control">
+										<option>Select Academic Year</option>
+										@foreach (var academicYear in academicYearList)
+										{
+											<option value = "@academicYear.Id">@academicYear.Name</option>
+										}
+									</select>
 								</div>
 							</div>
 						</div>

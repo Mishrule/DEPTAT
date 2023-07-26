@@ -18,7 +18,7 @@ namespace DEPTAT.Application.DTOs.Student
         public string ClassYear { get; set; }
         public int YearGroup { get; set; }
         public string AdmittedYear { get; set; }
-        public int Level { get; set; }
+        //public int Level { get; set; }
         public int ProgrammeId { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using DEPTAT.Application.Contracts.Infrastructure.IdentityManager;
 using DEPTAT.Application.Models.Accounts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DEPTAT.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly DeptatDbContext _db;

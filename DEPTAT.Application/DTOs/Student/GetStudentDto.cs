@@ -22,7 +22,7 @@ namespace DEPTAT.Application.DTOs.Student
         public string ClassYear { get; set; }
         public string AdmittedYear { get; set; }
         public int YearGroup { get; set; }
-        public int Level { get; set; }
+        //public int Level { get; set; }
         public int ProgrammeId { get; set; }
         public ProgrammeDto Programme { get; set; }
         //public DepartmentDto Department { get; set; }

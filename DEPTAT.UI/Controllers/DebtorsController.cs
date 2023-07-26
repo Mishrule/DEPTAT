@@ -8,11 +8,13 @@ using DEPTAT.Application.Features.Settings.Queries.CourseQuery;
 using DEPTAT.Application.Features.Settings.Queries.DepartmentQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 
 namespace DEPTAT.UI.Controllers
 {
+	[Authorize]
     public class DebtorsController : Controller
     {
         private readonly IMediator _mediator;
@@ -23,12 +25,14 @@ namespace DEPTAT.UI.Controllers
             _mediator = mediator;
             _httpContextAccessor = httpContextAccessor;
         }
+		[Authorize(Roles = "Admin, Account")]
         public async Task<IActionResult> Index()
         {
             var debtorList = await _mediator.Send(new GetDebtorsQuery());
             return View(debtorList.Result?.OrderByDescending(o => o.Id).ToList());
             
         }
+		[Authorize]
 
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
@@ -53,7 +57,7 @@ namespace DEPTAT.UI.Controllers
 
             return View(response);
         }
-
+		[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetDebtor(string Id)
         {

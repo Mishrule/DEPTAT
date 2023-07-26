@@ -6,10 +6,12 @@ using DEPTAT.Application.Features.Settings.Queries.AcademicYearQuery;
 using DEPTAT.Application.Features.Settings.Queries.FacultyQuery;
 using DEPTAT.Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEPTAT.UI.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	public class FacultyController : Controller
 	{
 		private readonly IMediator _mediator;

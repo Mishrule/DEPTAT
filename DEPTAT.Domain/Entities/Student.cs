@@ -21,7 +21,7 @@ namespace DEPTAT.Domain.Entities
 		public int Status { get; set; }
 		public string AcademicYear { get; set; }
 		public int YearGroup { get; set; }
-		public int Level { get; set; }
+		//public int Level { get; set; }
 		public string ClassYear { get; set; }
 		public string AdmittedYear { get; set; }
 		public int ProgrammeId { get; set; }

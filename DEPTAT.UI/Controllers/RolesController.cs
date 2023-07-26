@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DEPTAT.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         private readonly DeptatDbContext _db;

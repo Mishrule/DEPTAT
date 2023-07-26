@@ -33,8 +33,8 @@ namespace DEPTAT.UI.Controllers
 			return View();
 		}
 
-		
 
+		[Authorize]
 		[HttpGet]
 		public async Task<IActionResult> Register(string? returnurl = null)
 		{
@@ -154,7 +154,7 @@ namespace DEPTAT.UI.Controllers
 
 		
 		[HttpGet]
-
+		[AllowAnonymous]
 		//[ValidateAntiForgeryToken]
 		public IActionResult Login(string? returnUrl = null)
 		{
@@ -258,6 +258,11 @@ namespace DEPTAT.UI.Controllers
 				Value = u.Id
 			});
 			return View(objFromDb);
+		}
+
+		public IActionResult AccessDenied()
+		{
+			return View();
 		}
 
         //[HttpPost]

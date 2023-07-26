@@ -21,7 +21,7 @@ namespace DEPTAT.Application.Responses
         public string AcademicYear { get; set; }
         public string ClassYear { get; set; }
         public int YearGroup { get; set; }
-        public int Level { get; set; }
+        //public int Level { get; set; }
         public string AdmittedYear { get; set; }
         public int ProgrammeId { get; set; }
         public ProgrammeResponse Programme { get; set; }

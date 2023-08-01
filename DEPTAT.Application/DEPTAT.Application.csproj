@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DEPTAT.Domain\DEPTAT.Domain.csproj" />
+    <ProjectReference Include="..\DEPTAT.Infrastructure\DEPTAT.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

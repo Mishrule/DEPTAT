@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DEPTAT.Application.Features.Settings.Commands.OtpCommands;
 using DEPTAT.Application.Exceptions;
+using DEPTAT.Infrastructure;
 
 namespace DEPTAT.Application.Features.Settings.Handlers.OtpHandlers
 {
@@ -29,6 +30,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.OtpHandlers
         public async Task<BaseResponse<OtpResponse>> Handle(CreateAndUpdateOtpCommands request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<OtpResponse>();
+            var getStudentNumber = await _unitOfWork.StudentRepository.Get(s => s.StudentNumber == request.OtpDto.StudentNumber);
             try
             {
                 var exit = await _unitOfWork.OtpRepository.Exists(n => n.StudentNumber == request.OtpDto.StudentNumber && DateTime.Now.Year == request.OtpDto.CurrentYear);
@@ -42,8 +44,11 @@ namespace DEPTAT.Application.Features.Settings.Handlers.OtpHandlers
                     var save = await _unitOfWork.Save();
                     if (save)
                     {
+
                         response.IsSuccess = true;
                         response.Message = "OTP CLOCKED";
+                       
+                        SMSGateway.Send($"Use OTP: ${otp.OtpCode} Code for this year's exams.", getStudentNumber?.PhoneNumber, "EXAM_CODE");
                     }
                     else
                     {
@@ -56,12 +61,13 @@ namespace DEPTAT.Application.Features.Settings.Handlers.OtpHandlers
                 {
                     var otpEntity = _mapper.Map<Otp>(request.OtpDto);
 
-                    otpEntity = await _unitOfWork.OtpRepository.Insert(otpEntity);
+                    var otpEnt = await _unitOfWork.OtpRepository.Insert(otpEntity);
                     var save = await _unitOfWork.Save();
                     if (save)
                     {
                         response.IsSuccess = true;
                         response.Message = "OTP CLOCKED";
+                        SMSGateway.Send($"Use OTP: ${otpEntity.OtpCode} Code for this year's exams.", getStudentNumber?.PhoneNumber, "EXAM_CODE");
                     }
                     else
                     {

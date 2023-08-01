@@ -37,7 +37,7 @@ namespace DEPTAT.UI.Controllers
 			return View();
 		}
 
-		[Authorize(Roles = "Invigilator")]
+		[Authorize(Roles = "Invigilator,Admin,Account,Examiner")]
 		public async Task<IActionResult> SearchStudent(string studentNumber)
 		{
 			var data = await _mediator.Send(new GetDebtorsByStudentNumberQuery(studentNumber));

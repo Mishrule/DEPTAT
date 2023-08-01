@@ -16,15 +16,15 @@ namespace DEPTAT.Application.Profiles
 	{
 		//public string Id { get; set; }
 		//public string Username { get; set; }
-		public string Email { get; set; }
+		public string? Email { get; set; }
 		public string FirstName { get; set; } = string.Empty;
-		public string Othername { get; set; } = string.Empty;
+		public string?Othername { get; set; } = string.Empty;
 		public string LastName { get; set; } = string.Empty;
 		public string Name => LastName + ", " + FirstName + " " + LastName + " " + Othername;
-		[NotMapped]
-		public string RoleId { get; set; }
-		[NotMapped]
-		public string Role { get; set; }
+		//[NotMapped]
+		public string? RoleId { get; set; }
+		//[NotMapped]
+		public string? Role { get; set; }
 		[NotMapped]
 		public IEnumerable<SelectListItem>? RoleList { get; set; }
 

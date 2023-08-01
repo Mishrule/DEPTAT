@@ -4,6 +4,7 @@ using DEPTAT.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEPTAT.Persistance.Migrations
 {
     [DbContext(typeof(DeptatDbContext))]
-    partial class DeptatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230731221146_addedRole")]
+    partial class addedRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -360,12 +363,15 @@ namespace DEPTAT.Persistance.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AcademicYear")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AdmittedYear")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClassYear")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
@@ -395,18 +401,19 @@ namespace DEPTAT.Persistance.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OtherName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProgrammeId")
+                    b.Property<int>("ProgrammeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("YearGroup")
+                    b.Property<int>("YearGroup")
                         .HasColumnType("int");
 
                     b.HasKey("StudentNumber");
@@ -477,28 +484,28 @@ namespace DEPTAT.Persistance.Migrations
                         new
                         {
                             Id = "37470a99-4000-4e22-bde2-970e3acd9a5c",
-                            ConcurrencyStamp = "38a0d339-1c3a-4686-87dd-d0259a4bde91",
+                            ConcurrencyStamp = "0a312b5a-bb54-421c-905c-45356ebed695",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "cda07e2d-3d8e-4a54-ac3e-0ac233dfb3b6",
-                            ConcurrencyStamp = "ba8130ec-5e64-4ab3-94fb-82587bd8a5ba",
+                            ConcurrencyStamp = "65845f82-7aa0-47ed-b6bb-3adbcc0a4427",
                             Name = "Examiner",
                             NormalizedName = "EXAMINER"
                         },
                         new
                         {
                             Id = "561ebda5-541c-48b9-9e1a-e47e9e0ca044",
-                            ConcurrencyStamp = "19366455-c46b-4382-88dd-82c6c26dfe6e",
+                            ConcurrencyStamp = "37ead7db-484b-4692-b700-9a3727938d52",
                             Name = "Invigilator",
                             NormalizedName = "INVIGILATOR"
                         },
                         new
                         {
                             Id = "dabe93bd-b0d7-4031-91e8-81296292277d",
-                            ConcurrencyStamp = "4ab4b671-48dd-44b0-b611-09a9a043d9a0",
+                            ConcurrencyStamp = "743ca8a8-457a-4bd3-aa15-bf0775617a15",
                             Name = "Account",
                             NormalizedName = "ACCOUNT"
                         });
@@ -733,14 +740,14 @@ namespace DEPTAT.Persistance.Migrations
                         {
                             Id = "a38e1209-6272-4bc7-9cc4-e24bacc41f1d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f1df76c0-7941-42a6-aea7-18c9688de34e",
+                            ConcurrencyStamp = "75f0b948-b516-4a2e-97dc-db7a600d86c8",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBX3cSgh2BRy/ocMhMrfhCfJz0+hdVg2a/s1ty/K6TISDlCToMR/FLkRz4fIKgS5qQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELo8o0LADCB8v8x/2Y5lWdQ3T9ZGp2PSGRSfHbRFZEXaIpIp892NPibdgfOLjjYkqA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52c54c80-726a-4c0c-922f-5c0b3c500f3b",
+                            SecurityStamp = "7c9aaa4a-216b-4cf1-ab6f-ae4c8ad77c21",
                             TwoFactorEnabled = false,
                             UserName = "admin",
                             FirstName = "System",
@@ -751,14 +758,14 @@ namespace DEPTAT.Persistance.Migrations
                         {
                             Id = "f2712948-06b5-411f-b0e6-24304dc31761",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fae05a7b-bedf-4cc2-8028-2eb5760e8505",
+                            ConcurrencyStamp = "8953e206-9897-4d4d-9acf-d67606392dd0",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "EXAMINER@LOCALHOST.COM",
                             NormalizedUserName = "EXAMINER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE/xO+PD/ZkvRSJ6nYjXYzmfNQWBeBzd+y2iX+qKvV1ELxRdFWYxx4oMOxfPH38txg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG0+l7t+B3cY9We8Httxqe0wQq4E5MQbqEkOBC5HqPBmBgrtto+pjNXrD68hRYtcZQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c9ee375c-8eb3-4aef-b190-ebe18f356cf9",
+                            SecurityStamp = "e0f6cc2b-86e2-4266-ac3d-1c84b096ad47",
                             TwoFactorEnabled = false,
                             UserName = "examiner",
                             FirstName = "System",
@@ -769,14 +776,14 @@ namespace DEPTAT.Persistance.Migrations
                         {
                             Id = "c63a3909-a67b-43e0-8c6b-6fa6ee1704c8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3468f1a0-bd3d-470d-8117-6fc2e605de00",
+                            ConcurrencyStamp = "543bbe98-cb27-4fea-b6b4-188b717c15ba",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "INVIGILATOR@LOCALHOST.COM",
                             NormalizedUserName = "INVIGILATOR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMnfb6Prr3OJYwsmDRAQppaqTAdMHuD/omc+z5TScDruOUM294VS1Il8p2/KTG2+Zg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOWoWrB2ANbjT8yXu+rVIM48/hkW5YZ7PU+yp41of23lPn77XjRrHhlAin0WgBjEtQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c261b765-a086-40bf-b56f-c73d8a1759f9",
+                            SecurityStamp = "79248a6c-83c0-4d26-a89a-7ac77698670c",
                             TwoFactorEnabled = false,
                             UserName = "Invigilator",
                             FirstName = "System",
@@ -787,14 +794,14 @@ namespace DEPTAT.Persistance.Migrations
                         {
                             Id = "e5390aff-7fab-4634-b700-2abe65cf016d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4af081e6-faf5-40e0-b9cb-f258b16cf53d",
+                            ConcurrencyStamp = "c59f3722-d834-44ea-9cf9-db03d527eb6f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ACCOUNT@LOCALHOST.COM",
                             NormalizedUserName = "ACCOUNT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDYmCkwUx2vqCJ/J7tSzj9G9MET7/bnv6nXx/rA8u/BMzoscY/DjoqICdzbxHWaG2w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECeynOvVq6ZIHI5YwaAvotSvO2xB1OzY/YJArmUKKx12a8HYezNcr/yoj6MkyoptQA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4c9552da-6319-4c6b-b020-c5e44866dcdf",
+                            SecurityStamp = "28e185bc-70fe-40af-968d-e53fed8dfc0d",
                             TwoFactorEnabled = false,
                             UserName = "account",
                             FirstName = "System",
@@ -873,7 +880,9 @@ namespace DEPTAT.Persistance.Migrations
                 {
                     b.HasOne("DEPTAT.Domain.Entities.Programme", "Programme")
                         .WithMany()
-                        .HasForeignKey("ProgrammeId");
+                        .HasForeignKey("ProgrammeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Programme");
                 });

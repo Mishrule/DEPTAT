@@ -15,16 +15,16 @@ namespace DEPTAT.Domain.Entities
 		[Key]
 		public string StudentNumber { get; set; }
 		public string FirstName { get; set; }
-		public string OtherName { get; set; }
+		public string? OtherName { get; set; }
 		public string LastName { get; set; }
 		public string FullName => LastName + ", " + FirstName + " " + OtherName;
-		public int Status { get; set; }
-		public string AcademicYear { get; set; }
-		public int YearGroup { get; set; }
+		public int? Status { get; set; }
+		public string? AcademicYear { get; set; }
+		public int? YearGroup { get; set; }
 		//public int Level { get; set; }
-		public string ClassYear { get; set; }
-		public string AdmittedYear { get; set; }
-		public int ProgrammeId { get; set; }
+		public string? ClassYear { get; set; }
+		public string? AdmittedYear { get; set; }
+		public int? ProgrammeId { get; set; }
 		public Programme Programme { get; set; }
 		//public Department Department { get; set; }
 		//public Faculty Faculty { get; set; }

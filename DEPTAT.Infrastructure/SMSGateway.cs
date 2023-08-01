@@ -18,7 +18,7 @@ namespace DEPTAT.Infrastructure
 
                 // set API key for authentication
                 sr.setAuthModel(AuthModel.API_KEY);
-                sr.setAuthApiKey("49244f8ffc3ed558188b699747d07186a675db279f9b42408ead155535b78571");
+                sr.setAuthApiKey("0ef757aa4835c09752daf280167dcbbc8db7196b960cee6b4e0a4c159f5759b1");
 
                 NotifyRequest.useSecureConnection(true);
 

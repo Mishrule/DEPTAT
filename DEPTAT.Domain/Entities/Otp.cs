@@ -11,7 +11,7 @@ namespace DEPTAT.Domain.Entities
 
 	public class Otp
 	{
-		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 		public string OtpCode { get; set; }
 		[ForeignKey(nameof(Student))]

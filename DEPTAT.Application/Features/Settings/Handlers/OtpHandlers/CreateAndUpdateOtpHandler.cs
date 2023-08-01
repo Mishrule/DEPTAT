@@ -37,9 +37,10 @@ namespace DEPTAT.Application.Features.Settings.Handlers.OtpHandlers
                 if (exit)
                 {
                     var otp = await _unitOfWork.OtpRepository.Get(y => y.StudentNumber == request.OtpDto.StudentNumber);
-               
+                    var id = otp.Id;
 
                     var otpEntity = _mapper.Map(request.OtpDto, otp);
+                    otpEntity.Id = id;
                     await _unitOfWork.OtpRepository.Update(otpEntity);
                     var save = await _unitOfWork.Save();
                     if (save)

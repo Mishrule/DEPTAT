@@ -9,26 +9,31 @@
 			'Description' : $('#description').val()
 		}
 
-		
+		if ($('#yearGroup').val() !== "") {
+			$("#validateYearGroup").attr("hidden", true);
+			$.ajax({
+				url: $('#base_url').text() + '/YearGroup/CreateYearGroups',
+				contentType: "application/json",
+				type: 'POST',
 
-		$.ajax({
-			url: $('#base_url').text() + '/YearGroup/CreateYearGroups',
-			contentType: "application/json",
-			type: 'POST',
+				data: JSON.stringify(createYearGroup),
 
-			data: JSON.stringify(createYearGroup),
+				success: function(response) {
+					if (response.isSuccess) {
+						showNotificationSuccessMessage(response.message, "Success");
+						//location.reload();
+					} else {
+						showNotificationErrorMessage("Failed", response.message, "error");
+						//location.reload();
+					}
 
-			success: function (response) {
-				if (response.isSuccess) {
-					showNotificationSuccessMessage(response.message, "Success");
-					//location.reload();
-				} else {
-					showNotificationErrorMessage("Failed", response.message, "error");
-					//location.reload();
 				}
-				
-			}
-		})
+			});
+		} else {
+			$("#validateYearGroup").removeAttr("hidden");
+		}
+
+		
 		
 	})
 

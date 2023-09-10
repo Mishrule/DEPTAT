@@ -20,18 +20,19 @@
 					<h2>
 						ADD STUDENT
 					</h2>
-					@*<ul class="header-dropdown m-r--5">
+					<ul class="header-dropdown m-r--5">
 						<li class="dropdown">
 							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								<i class="material-icons">more_vert</i>
 							</a>
 							<ul class="dropdown-menu pull-right">
-								<li><a href="javascript:void(0);">Action</a></li>
-								<li><a href="javascript:void(0);">Another action</a></li>
-								<li><a href="javascript:void(0);">Something else here</a></li>
+								<li><a asp-controller="Student" asp-action="UploadStudents">Upload Students</a></li>
+								@*<li><a asp-controller="Student" asp-action="UploadStudents" data-toggle="modal" data-target="#smallModal">Upload Students</a></li>*@
+								@*<li><a href="javascript:void(0);">Another action</a></li>
+								<li><a href="javascript:void(0);">Something else here</a></li>*@
 							</ul>
 						</li>
-					</ul>*@
+					</ul>
 				</div>
 				<div class="body">
 					<form class="form-horizontal" id="registerForm" method="post" enctype="multipart/form-data">
@@ -224,7 +225,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="phoneNumber" name="PhoneNumber" class="form-control" placeholder="Enter your Phone Number">
+										<input type="tel" id="phoneNumber" name="PhoneNumber" class="form-control" placeholder="Enter your Phone Number" required>
 									</div>
 								</div>
 							</div>
@@ -237,7 +238,7 @@
 							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 								<div class="form-group">
 									<div class="form-line">
-										<input type="text" id="email" name="Email" class="form-control" placeholder="Enter your email address">
+										<input type="email" id="email" name="Email" class="form-control" placeholder="Enter your email address" required>
 
 									</div>
 								</div>
@@ -283,6 +284,11 @@
 	<!-- #END# Horizontal Layout -->
 
 	</div>
+	
+
+
+
+
 
 <script type="text/ecmascript">
 	const chooseFile = document.getElementById("imageUrl");

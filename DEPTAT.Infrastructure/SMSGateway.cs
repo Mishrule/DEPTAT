@@ -5,7 +5,7 @@ namespace DEPTAT.Infrastructure
 {
     public static class SMSGateway
     {
-        public static void Send(string message, string destinationPhoneNumber, string title = "MISH")
+        public static void Send(string message, string destinationPhoneNumber, string title = "")
         {
             try
             {
@@ -18,7 +18,7 @@ namespace DEPTAT.Infrastructure
 
                 // set API key for authentication
                 sr.setAuthModel(AuthModel.API_KEY);
-                sr.setAuthApiKey("0ef757aa4835c09752daf280167dcbbc8db7196b960cee6b4e0a4c159f5759b1");
+                sr.setAuthApiKey("");
 
                 NotifyRequest.useSecureConnection(true);
 

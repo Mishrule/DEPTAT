@@ -2,36 +2,40 @@
 	//Create Year Group
 	$('#updateDepartment').hide();
 	$('#departmentId').hide();
-	$('#saveDepartment').click(function () {
-		
+	$('#saveDepartment').click(function() {
+
 		var createDepartment = {
 			'Name': $('#departmentName').val(),
 			'Description': $('#description').val(),
 			'FacultyId': $('#facultyId').val()
 		}
 
-		
+		if ($('#departmentName').val() !== "") {
+			$("#validateDepartment").attr("hidden", true);
+			$.ajax({
+				url: $('#base_url').text() + '/Department/CreateDepartment',
+				contentType: "application/json",
+				type: 'POST',
 
-		$.ajax({
-			url: $('#base_url').text() + '/Department/CreateDepartment',
-			contentType: "application/json",
-			type: 'POST',
+				data: JSON.stringify(createDepartment),
 
-			data: JSON.stringify(createDepartment),
+				success: function (response) {
+					if (response.isSuccess) {
+						showNotificationSuccessMessage(response.message, "Success");
+						//location.reload();
+					} else {
+						showNotificationErrorMessage("Failed", response.message, "error");
+						//location.reload();
+					}
 
-			success: function (response) {
-				if (response.isSuccess) {
-					showNotificationSuccessMessage(response.message, "Success");
-					//location.reload();
-				} else {
-					showNotificationErrorMessage("Failed", response.message, "error");
-					//location.reload();
 				}
-				
-			}
-		})
+			});
+		} else {
+			$("#validateDepartment").removeAttr("hidden");
+		}
 		
-	})
+
+	});
 
 
 	//Edit Year Group

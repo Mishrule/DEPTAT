@@ -25,12 +25,23 @@ namespace DEPTAT.UI.Controllers
         [HttpPost]
         public async Task<ActionResult<BaseResponse<CreateYearGroupDto>>> CreateYearGroups([FromBody]CreateYearGroupDto createYearGroup)
         {
-            var command = new CreateYearGroupCommand
-            {
-                CreateYearGroupDto = createYearGroup
-            };
-            var response = await _mediator.Send(command);
-            return Ok(response);
+	        var baseResponse = new BaseResponse<YearGroupResponse>();
+	        if (createYearGroup.Name > DateTime.Now.Year)
+	        {
+		        baseResponse.IsSuccess = false;
+		        baseResponse.Message = "Year Group cannot be more than this year";
+		        return Ok(baseResponse);
+	        }
+	        else
+	        {
+		        var command = new CreateYearGroupCommand
+		        {
+			        CreateYearGroupDto = createYearGroup
+		        };
+		        var response = await _mediator.Send(command);
+		        return Ok(response);
+			}
+            
         }
 
         [HttpGet]

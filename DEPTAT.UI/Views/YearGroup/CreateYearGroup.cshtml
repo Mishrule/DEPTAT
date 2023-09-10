@@ -17,7 +17,7 @@
 							<div class="form-line">
 
 								<input type="number" id="yearGroupId" class="form-control">
-								<label class="form-label">Year Group</label>
+								<label class="form-label">Year Group <sup id="validateYearGroup" class="text-danger" hidden>* Required</sup></label>
 								<input type="number" id="yearGroup" class="form-control">
 								
 							</div>
@@ -59,6 +59,7 @@
 							<table class="table table-hover dashboard-task-infos">
 								<thead>
 								<tr>
+									<th>Id</th>
 									<th>Year Group</th>
 									<th>Description</th>
 									<th>Action</th>
@@ -70,6 +71,7 @@
 										@foreach (var data in Model)
 										{
 											<tr>
+												<td>@data.Id</td>
 												<td>@data.Name</td>
 												<td>@data.Description</td>
 												<td>

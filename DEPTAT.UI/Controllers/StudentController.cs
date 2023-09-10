@@ -1,4 +1,6 @@
-﻿using DEPTAT.Application.DTOs.Student;
+﻿using DEPTAT.Application.DTOs.Debtors;
+using DEPTAT.Application.DTOs.Student;
+using DEPTAT.Application.Features.Examinations.Commands.DebtorsCommand;
 using DEPTAT.Application.Features.Settings.Commands.FacultyCommands;
 using DEPTAT.Application.Features.Settings.Commands.StudentCommands;
 using DEPTAT.Application.Features.Settings.Queries.AcademicYearQuery;
@@ -136,6 +138,35 @@ namespace DEPTAT.UI.Controllers
 
             var academicYearList = await _mediator.Send(new GetAcademicYearsQuery());
             ViewBag.AcademicYearList = academicYearList.Result?.OrderByDescending(o => o.Id).ToList();
+        }
+
+        public IActionResult UploadStudents()
+        {
+            return View();
+        }
+
+
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file == null || file.Length <= 0)
+            {
+                ModelState.AddModelError("file", "Please select a valid Excel file.");
+                return View("Index");
+            }
+
+            var command = new CreateStudentCommand()
+            {
+                CreateStudentDto = new CreateStudentDto()
+                {
+                    File = file
+                }
+            };
+
+
+            var response = await _mediator.Send(command);
+
+            ViewBag.UploadedStudents = response;
+            return View("UploadStudents");
         }
 
     }

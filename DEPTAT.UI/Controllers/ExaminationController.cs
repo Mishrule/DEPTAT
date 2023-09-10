@@ -48,10 +48,10 @@ namespace DEPTAT.UI.Controllers
 		public async Task<IActionResult> Attendance()
 		{
 			var programmeList = await _mediator.Send(new GetProgrammesQuery());
-			ViewBag.ProgrammeList = programmeList.Result?.OrderByDescending(o => o.Id).ToList();
+			ViewBag.ProgrammeList = programmeList?.Result?.OrderByDescending(o => o.Id).ToList();
 
 			var academicYearList = await _mediator.Send(new GetAcademicYearsQuery());
-			ViewBag.AcademicYearList = academicYearList.Result?.OrderByDescending(o => o.Id).ToList();
+			ViewBag.AcademicYearList = academicYearList?.Result?.OrderByDescending(o => o.Id).ToList();
 
 
 			return View();
@@ -105,6 +105,7 @@ namespace DEPTAT.UI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> TakeAttendance(CreateAttendanceDto createAttendance)
 		{
+			createAttendance.AnswerBookSerialNumber = FormatCurrentDateTime();
 			var command = new CreateAttendanceCommand
 			{
 				CreateAttendanceDto = createAttendance
@@ -120,6 +121,25 @@ namespace DEPTAT.UI.Controllers
 			var attendanceList = await _mediator.Send(new GetAttendanceQuery());
 			return View(attendanceList.Result?.OrderByDescending(o => o.Id).ToList());
 			
+		}
+
+
+		static string FormatCurrentDateTime()
+		{
+			// Get the current date and time
+			DateTime currentDateTime = DateTime.Now;
+
+			// Extract year, seconds, and minutes
+			int year = currentDateTime.Year;
+			int seconds = currentDateTime.Second;
+			int minutes = currentDateTime.Minute;
+			int month = currentDateTime.Month;
+			int day = currentDateTime.Day;
+
+			// Create a formatted string
+			string formattedString = $"{year:D4}{month:D}{day:D}{minutes:D2}{seconds:D2}";
+
+			return formattedString;
 		}
 
 	}

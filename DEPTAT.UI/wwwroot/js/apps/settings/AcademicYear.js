@@ -9,24 +9,29 @@
 			'Description' : $('#description').val()
 		}
 
+		if ($('#academicYear').val() !== "") {
+			$("#validateAcademicYear").attr("hidden", true);
+			$.ajax({
+				url: $('#base_url').text() + '/AcademicYear/CreateAcademicYear',
+				contentType: "application/json",
+				type: 'Post',
+				data: JSON.stringify(createAcademicYear),
 
-		$.ajax({
-			url: $('#base_url').text() + '/AcademicYear/CreateAcademicYear',
-			contentType: "application/json",
-			type: 'Post',
-			data: JSON.stringify(createAcademicYear),
+				success: function (response) {
+					if (response.isSuccess) {
+						showNotificationSuccessMessage(response.message, "Success");
+						//location.reload();
+					} else {
+						showNotificationErrorMessage("Failed", response.message, "error");
+						//location.reload();
+					}
 
-			success: function (response) {
-				if (response.isSuccess) {
-					showNotificationSuccessMessage(response.message, "Success");
-					//location.reload();
-				} else {
-					showNotificationErrorMessage("Failed", response.message, "error");
-					//location.reload();
 				}
-				
-			}
-		})
+			})
+		} else {
+			$("#validateAcademicYear").removeAttr("hidden");
+		}
+		
 		
 	})
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DEPTAT.Application.DTOs.Programme;
+using Microsoft.AspNetCore.Http;
 
 namespace DEPTAT.Application.DTOs.Student
 {
@@ -18,6 +19,7 @@ namespace DEPTAT.Application.DTOs.Student
         public string ClassYear { get; set; }
         public int YearGroup { get; set; }
         public string AdmittedYear { get; set; }
+        public IFormFile File { get; set; }
         //public int Level { get; set; }
         public int ProgrammeId { get; set; }
         public string PhoneNumber { get; set; }

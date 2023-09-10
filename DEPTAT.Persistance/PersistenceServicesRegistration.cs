@@ -34,6 +34,7 @@ namespace DEPTAT.Persistence
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IDebtorRepository, DebtorRepository>();
             services.AddScoped<ILoadExcelToDb<DebtorsResponse>, LoadExcelToDb>();
+            services.AddScoped<ILoadExcelToDb<StudentResponse>, LoadStudentsFromExcel>();
             services.AddScoped<IOtpRepository, OtpRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
             return services;

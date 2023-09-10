@@ -10,25 +10,30 @@
 		}
 
 		
+		if ($('#facultyName').val() !== "") {
+			$("#validateFaculty").attr("hidden", true);
+			$.ajax({
+				url: $('#base_url').text() + '/Faculty/CreateFaculty',
+				contentType: "application/json",
+				type: 'POST',
 
-		$.ajax({
-			url: $('#base_url').text() + '/Faculty/CreateFaculty',
-			contentType: "application/json",
-			type: 'POST',
+				data: JSON.stringify(createYearGroup),
 
-			data: JSON.stringify(createYearGroup),
+				success: function(response) {
+					if (response.isSuccess) {
+						showNotificationSuccessMessage(response.message, "Success");
+						//location.reload();
+					} else {
+						showNotificationErrorMessage("Failed", response.message, "error");
+						//location.reload();
+					}
 
-			success: function (response) {
-				if (response.isSuccess) {
-					showNotificationSuccessMessage(response.message, "Success");
-					//location.reload();
-				} else {
-					showNotificationErrorMessage("Failed", response.message, "error");
-					//location.reload();
 				}
-				
-			}
-		})
+			});
+		} else {
+			$("#validateFaculty").removeAttr("hidden");
+		}
+		
 		
 	})
 

@@ -49,7 +49,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.OtpHandlers
                         response.IsSuccess = true;
                         response.Message = "OTP CLOCKED";
                        
-                        SMSGateway.Send($"Use OTP: {otp.OtpCode} Code for this year's exams.", getStudentNumber?.PhoneNumber, "EXAM_CODE");
+                        SMSGateway.Send($"Use OTP: {otp.OtpCode} Code for this year's exams.", getStudentNumber?.PhoneNumber, "TEST");
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace DEPTAT.Application.Features.Settings.Handlers.OtpHandlers
                     {
                         response.IsSuccess = true;
                         response.Message = "OTP CLOCKED";
-                        SMSGateway.Send($"Use OTP: {otpEntity.OtpCode} Code for this year's exams.", getStudentNumber?.PhoneNumber, "EXAM_CODE");
+                        SMSGateway.Send($"Use OTP: {otpEntity.OtpCode} Code for this year's exams.", getStudentNumber?.PhoneNumber, "TEST");
                     }
                     else
                     {
